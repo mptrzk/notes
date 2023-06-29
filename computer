@@ -1,0 +1,238 @@
+TODO
+  github cli,
+  so I finally remember how to do it
+
+understanding http
+  is requesting headers separately much slower?
+
+does latency affect bandwidth for TCP?
+  should depend on ?frame? size
+    the acks have to travel...
+
+monitor traffic
+  is it tru that outgoing requests come on different ports?
+
+how is incomming traffic from 2 different sources at once, possible?
+  it isn't at once
+  it's queued, by router probably
+    rly?
+
+branch prediction
+cache misses
+
+virtual memory
+
+threads
+
+big O
+
+files & file descriptors
+
+ioctl
+
+userspace and kernelspace
+
+concurrency & parallelism
+
+
+I hit search
+	down the OSI
+		application
+			event happens
+			page disappears
+      http
+			[lower layer stuff]
+		presentation
+			request gets prepared
+			[lower layer stuff]
+		session
+			socket?
+			[lower layer stuff]
+		transport
+			tcp?
+				ACK/NACKs
+			[lower layer stuff]
+		network
+			routing?
+			[lower layer stuff]
+		data link
+			ARP
+			frames
+			[lower layer stuff]
+		physical
+	stuff not on my computer
+the result page appears
+	dynamically loaded content loads
+
+
+dns?
+big site IPs
+
+multiple tabs send requests to an http sever
+how do they get correct responses?
+	some kind of connection id?
+same with websockets
+
+print request headers
+
+dumping whole request as JSON
+
+git
+  learn it properly
+
+
+[tidy up]
+
+  apparently you can read an open file
+    when I try to do it in python the file is empty
+    can I check if the file is used?
+
+named pipes
+      well, I need some kind of a pipe...
+      can't you just wait till the file is free?
+
+can you read a file that's being written?
+  what happens if you try?
+    does it break?
+    does it wait?
+
+==================================================
+;LINUX
+
+trying to mount ext4 partition with uid option
+  https://superuser.com/questions/932676/cannot-set-uid-with-mount
+bindfs
+  supposedly, there's overhead
+apparently you can just chown the parent directory
+  what if there are files inside
+so what's the deal with FAT then?
+
+wait, so did it work all along?
+  the directory I mounted to was owned by the user
+  check it by creating a new user, giving him the dir and mounting the partition there
+
+==================================================
+;GIT
+
+problem with gh auth
+	this fixed it:
+		git config --global 'credential.https://github.com.helper' ''
+		git config --global --add 'credential.https://github.com.helper' '!gh auth git-credential'
+	what does it mean?
+
+
+==================================================
+;NOTETAKING
+
+absolutely idiotic note taking
+file is a harder abstraction than a section
+
+==================================================
+;PHILOSOPHY
+
+definitions and descriptions
+
+not all definitions are helpful
+
+==================================================
+;UNCATEGORIZED
+
+separate repo for notes?
+keeping old stuff in separate branches?
+  how multiple branches work on github?
+
+
+OOP
+
+"object" is quite complicated
+
+the dot syntactic sugar
+local namespace
+genericity
+
+explained by comparison with equivalent non-oop code
+
+casey muratori on clean code and polymorphism
+
+goedel's recursive functions
+  can you make a programming paradigm out of this?
+
+do symbols symbolize in JS?
+  is there symbol-level reflection?
+
+on using large tools
+  they solve more problems than you could think of
+  scrapy and redirects
+
+what's a decorator?
+
+concurrency vs parallelism
+  concurrent - not sequential (on task level)
+  parallel - not sequential (at any level)
+
+thread pool
+
+scheduling
+
+expression
+statement
+task
+instruction
+thread
+  an abstraction over state of sequential computation
+promise
+
+sequential computation
+
+event
+  time travel
+  multiple data
+  conditional execution
+
+fun exercise:
+  implement a vm with concurrency on a single thread
+
+"you can't have interrupts without threads"
+  rly?
+
+trie
+b-tree
+red-black tree
+hash table
+bloom filter
+different implementations
+
+asymptotic complexity
+
+example of non-context-free grammar - algebraic notation
+  or rather mapping it to moves
+    which isn't grammar, right???
+
+cooperative and preemptive multitasking
+how python implements "yield"
+where does the stack go
+does it internally distinguish between functions with "yield" and without it?
+
+"why not use threads instead of promises?"
+  promises can be used in sequenital code too
+    rly?
+
+C with "yield"?
+
+js fustercluck
+  does "next" method make class iterable
+  async iterator without "next"
+  object destructuring syntax
+
+NodeJS
+  fs normal, sync, async
+    normal vs sync
+
+how streams work in UNIX
+
+tough bugs
+  readlines bug
+  (almost) .jsonl
+    didn't know that scrapy autodetects the type
+
+
