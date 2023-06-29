@@ -1,0 +1,35 @@
+simpler than lisp
+
+the problem of implicit logic
+
+throwaway languages
+	changing gc is not changing language semantics
+	writing a lisp interpreter and just using it instead would be such
+compilation?
+
+
+[move?]
+is doing SnC in C sane?
+	no macros
+	no good checking facilities
+	speed is not that important in the first interpreter
+
+the island challenge
+	why not asm
+		The best way to do it would be to write in a higher level
+			programming language and transcribe it to asm
+		I'm preparing for an island
+		I can use w
+
+external parser - statically substituded defs, not symbols
+internally parsed stuff works like externally parsed stuff, but is more powerful
+	lets and stuff
+
+"let" and quoting work differently in lisp due to interpreter not evaluating symbols dynamically
+[is it phil, or more like distilled design stuff?]
+it's really odd that I haven't realized it till now
+
+small bootstrap - least throw-away code
+"it's really ugly when it's complex, you need it, and then you can throw it away"
+	what would happen without symbols
+	fexprs?

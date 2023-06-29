@@ -1,0 +1,2359 @@
+==================================================
+;SECTIONS
+
+sections
+todo
+bugs
+design
+writeup
+resolved
+future
+terminology
+runes
+symbols
+metaprogramming
+preprocessing
+necessary eval
+inop semantics
+server
+bootstrapping
+implementation
+deflist inop problem
+closure call problem
+exploding ctx problem
+rec arg eval problem
+scopes
+stupid
+wacky
+uncategorized
+old
+
+
+==================================================
+;TODO
+
+bug section
+  move from other stuff
+inop semantics
+  discuss different ways of doing it
+  including no-inop
+clean up TERMINOLOGY
+terminology of ops
+definition with reduction
+refactor notes
+fexpr vs fun
+	rewrite
+writeup
+explain loader qutoe kerfuffle
+section for "apply"
+	compare kreck's apply with old pock or lisp's apply
+		eager evaluation and need of using calr
+			implicit ?encoding? in pock
+
+functionality
+	lamdas
+	symbolic reduction
+	replace
+
+bootstrapping
+	reduce starting deflist
+saner deflists
+internal parsing
+
+dealing with errors
+
+server
+
+ooze
+
+server in C
+atom problems
+
+"old" section
+
+==================================================
+;BUGS
+
+stack overflow
+heap overflow
+c not found
+  redefined "c" by accident
+q not found
+  forgetting about q*
+fn krefuffle
+  "inop" inop built inops with the deflist it was defined against,
+    not the deflist inherited from subj in which it was called
+trying to eval snip with the root subj
+
+
+==================================================
+;DESIGN
+
+regularity - not expecting doing things differently
+
+avoiding leaking lower level
+the direction
+
+implementations of stuff
+  hardwired, primodial exops, inops, compiled exops
+
+leaving the room
+  stuff that can be replaced with better stuff shouldn't be hardwired
+
+example of symops
+
+stateless metaprogramming
+
+encouraging runtime determinism
+
+language that would be mostly written in itself when starting from low level
+make clever stuff easy to do starting from a low level language
+no gymnastics
+as few crutches as possible
+access to machine stuff
+
+if it's easier to write in asm, it should be primodial
+
+power should have future
+
+convenience on top of generality
+
+==================================================
+;WRITEUP
+
+it's a lisp, but with even more metaprogramming
+AST as a data structure exposed to the programmer
+environment
+
+subject orientation
+feels very forthy
+but it's purely fucntional
+
+the batin of functional programming
+
+It's a language designed for my amusement
+
+threading with 'side effects'
+
+what?
+It's a lisp (According to mark Tarver), but more lispy, more powerful,
+more bare-bones and easier to implement well
+  stuff like function definition semantics, recursion, scoping, variables, scoping isn't hardwired
+  general operator applications
+    treats args as code
+    no hardwired distinction between eager functions, macro
+
+kreck story
+Imagine you're on a desert island with no computers...
+You stumble upon a big black box
+  big red button
+  binklights
+  those weird swithches
+  knob
+kreck approach
+this approach is a bit wrong
+  some throw away stuff is too good
+    debugging
+  maybe make it detachable?
+  I'd have to address the low-level issues pretty quickly
+
+if all the software disappeared
+
+
+
+
+pock story
+  urbit story
+  designing for the many
+  designing for one person
+
+explanatory
+chronological
+kerfuffles
+
+So I wanted to build a programming language
+forth
+	rpn
+metaprogramming
+lisp
+  powerful and (relatively) sane metaprogramming
+  insane metaprogramming
+    opcode level
+    text level
+    forth
+Stopa's lisp
+dayvan
+nock
+	subject
+	"LC is simpler"
+pock
+	more lisp-like than nock
+	no bignums
+	just leaves
+		booleans,
+		numbers
+	simpler to implement
+		nock's slot
+	refcounts
+	substitution macros
+	more refcounts
+	reluctance to implement sugary ops
+	the application op
+	abc
+		the fustercluck of not writing tests
+	making it implicit
+	dynamic macros
+	the big internalization problem
+	ABC gc
+kreck
+	original idea
+	fexprs
+problem of defs
+	symbols
+		what are they
+		problems
+need for internal system
+design considerations
+	variable scopes
+difference between static & dynamic def resolution
+	comparison
+	static resolution
+		why?
+	dynamic resolution
+		why is it cool
+			it allows more stuff to be done in kreck
+		substitution semantics
+		getter semantics
+		an example of difference
+		naive approach
+		the cost of it
+getter and substitution semantics
+	the tradeoffs
+getter semantics
+	triple eval power problem [meh]
+why subst semantics?
+	removing dynamic name resolution
+	convenient code calling
+		it would be (stuff) with getter semantics
+		 and it would have to be an inop
+internal code generation
+
+
+
+==================================================
+;RESOLVED
+
+loader quote kerfuffle
+	[eplain]
+
+"getdef" to "evdef"?
+	you can have getdef too
+		and use it in stuff like replace
+
+
+==================================================
+;FUTURE
+
+inspecting exops
+sane editor
+browser stuff
+jets
+type system
+formal proofs
+compilation
+zk stuff
+
+==================================================
+;TERMINOLOGY
+
+metaprogramming
+deep metaprogramming
+metaprogramming as first class feature
+
+internal -
+external -
+
+op - operator
+  can be applied to stuff
+exop - external operator
+  primodial exop - exop that's
+inop -
+
+
+expression - stuff that kreck can evaluate in a defined way
+  not possibly crashing
+
+op's code
+	not opcode, that would be confusing
+	body?
+
+??? - code that isn't an op
+	
+
+clean call - doesn't fill up the heap
+	what about args?	
+
+caller (calr)
+
+caller snipping
+  removing calr from the subject in order to prevent filling up the heap
+  [todo - describe in detail]
+
+op application
+	subj, args
+	function in mathematical sense
+
+
+eop - eager op
+	all args are evaluated with respect to caller subj
+
+closure - op that generates a pre-evaluated context
+	that's just implementation
+
+
+??? - exop only code
+	atomized
+??? -	code that reduces to exop only code
+	atomizable
+	symbolically atomizable
+??? - code that executes only one evaluation
+	external?
+
+
+power
+	doing more with less
+
+the kinds of answers to why
+	what can you do
+	implementation
+	what it means
+		what?
+
+version with defget
+	is it substitutive for the op?
+
+
+aremhic - arguably even more homoiconic
+
+deflist -
+	like a namespace?
+
+atom -
+cell -
+symbol -
+  meant to symbolize, which is
+  meant to be mapped to something as a whole
+  meant to be treated as a part of some language
+  the important property is that it's unique
+    in which way
+    in lisps they share a memory address
+  strings are different
+literal - expression that evaluates to itself
+
+gate
+	recursive inop
+
+static macro
+dynamic macro
+
+quasiquote
+
+symbolic code
+symbolic reduction
+non-symbolic/reduced code
+
+
+
+coherent deflist -
+
+runes - ???
+
+rename fexpr-gate?
+
+[section for terminological kerfuffle?]
+
+why defev instead of defget
+	"A is a definition of B" means they can be substituted in an expression
+
+
+op
+"is the stuff evaluated an op getter, or the op itself?"
+	difference - when the result is an exop
+
+
+==================================================
+;RUNES
+
+a bit informal
+Runes are natural language
+
+list
+	~ - nil
+	! - macro stuff
+	@ - name stuff
+		not apply?
+		name stuff could be #
+	* - eval stuff
+	: - construction
+	? - conditionals
+		how about predicates?
+			sidethought - predicates in LC
+	| - proof stuff
+	& - ?state?
+	% - update
+	/ - ???
+
+
+% for fexprs?
+softer than in hoon
+semantic shorthand
+
+{}[] in runes?
+	yay
+		stuff's going to be regular, it won't be used as brackets
+	nay
+		misleading
+			but the whole thing is a bit misleading for someone new
+
+
+==================================================
+;SYMBOLS
+
+
+symbol
+  "thing that represents something"
+    well gee, stuff means stuff
+  from wiki, in context of lisp
+    intered string
+      meh definition
+
+symbols in binaries
+  funciton addresses change
+
+symbols in lisp
+  interned strings
+    can be compared by eq
+      everything can, but for symbols it holds that...
+      whereas for strings...
+
+uses of symbols
+  quick comparison
+  resolution during eval
+
+but coudn't you just use strings if you didn't care about a bit of the slowdown?
+  most importantly, symbols are not literals
+    how do you tell them apart?
+      you know what the literals eval to just after parsing
+      value not dependent on context
+  [example]
+
+problems with symbols
+  a lot of hardwiring
+    hardwiring creates inflexibility
+    deflist must be at a hardwired locus
+  packages add mess
+    example - common lisp
+
+implicit symbols in kreck
+
+how kreck does it
+
+symbols are parsed (symop name)
+
+
+symop semantics
+  to eval or not to eval
+  [check necessary eval]
+  cool stuff
+  ease of reduction
+    rly
+  like definitions in math
+
+
+symeq
+association semantics
+  the rune
+  strings as keys
+  symbols as keys
+  anything as keys
+
+  you can use symbols as assoc keys
+    symops use strings as assoc keys
+
+stuff without q*
+  [probably writen here somewhere]
+
+
+mostly typeless
+
+representing code in identifiable form
+
+symbolic reduction
+
+
+
+==================================================
+;METAPROGRAMMING
+
+metaprogramming - programming the language itself
+
+good, bad and ugly
+  powah
+  responsibility
+  mess
+
+how kreck turns it up to 11
+
+fexprs and macros
+
+==================================================
+;PREPROCESSING
+
+typing is
+  automating reasoning
+  infering properties
+
+what is typing for
+  checking for bugs
+  optimization
+
+negative property
+
+why types and not sets?
+
+how quote makes it hard
+
+property list as type?
+
+problem with subj
+
+statements about deflists
+
+exops
+
+is car nil?
+is car code
+
+is it castable to X
+is it aliasable to X
+  does it make sense?
+
+symbolic reduction
+arising naturally from where deflists are?
+  contrast with previous inop semantics
+
+simple "let" and reducibility
+reducibility and determinism
+section about symbolic reduction
+symbolic reduction and eval
+hinted defs
+lazy let
+irreducibility hint
+
+eval what is known
+
+reducing interpreter
+  treats ops differently
+
+must refer to (> (> ($))) to be known
+
+"probe"
+  returns known/unknown
+
+reduction and debugging
+
+
+ 
+
+
+==================================================
+;NECESSARY EVAL
+
+Aren't there too many evals?
+There are nested quotes everywhere, preventing the evals from doing stuff
+Are they necessary?
+	for some cool stuff
+	in use cases where they repeat often or are confusing, there should be wrappers
+
+eagerness of evaluation is determined by the op [move to "apply" section]
+getter is op-agnostic
+
+inop getter
+	lexical closures which can eval their args using subj
+		free manipulation thereof
+			free of the closure itself
+				???
+				no funcall-like stuff
+	is it really needed though?
+		getter can be an op		
+		a bit funcall like
+
+
+why not use subj as an implicit argument
+	tco works for stack, but garbage is generated
+	couldn't cleanly recurse with "apply" syntax		
+		why?
+			the outermost evalation would be application, which would create garbage
+			to recurse cleanly one would have to wrap the call in eval expression
+				rly?
+					wouldn't wrapping the op's code work?
+
+
+defev vs. defget
+  defgev
+    ease of symbolic reduction through substitution
+    don't have to compute where to store stuff in the new subj
+  defget
+    lexical scope is just inheriting a deflist
+      you can do that with defget if you quote stuff
+        but then when you reduce the deflist, you get call by name
+          do you?
+
+*q
+	so that gates can be both added to deflists and used as closures
+
+
+
+==================================================
+;INOP SEMANTICS
+
+
+syntax
+explicit - exop that applies an inop
+  that might be good, because inops are way less efficient than well writen exops
+implicit - apply inop when car of the form is not an atom
+  more lispy
+  symbol substitution works!
+   
+with explicit syntax, you must know whether the op-expr returns an inop or exop
+
+
+*[subj ((code . clos) . args)] = *[(subj (code . clos) . args) code]
+don't have to construct gates
+symop looks at (>><> $)
+^^ eval!
+  is it necessary?
+    k want it there so that the op can be a result of an expression
+this way, in contrast with the previous one should allow recursing by using "this"
+as a function
+
+snipping happens anyway
+context building largely unnecessary
+inop getter, inop expr, and the returned closure design consideration
+
+
+
+eager - args are evaluated
+  pros
+    makes stuff easy
+  cons
+    irregular
+    can't do metaprogramming internally without quotes and evals
+
+
+lazy
+opinionated
+unopinionated
+
+
+[pasted from removed section]
+exop
+	a fexpr...
+	it's a fexpr and not a function to allow the ops to be general
+inop
+	a funcall
+		it's funcall not fexp, to make expressions simple
+	but don't I want generality from internal stuff also?
+		buut that would require explicit evals in the closures
+		and another call to put it in the subj
+		and it would have to be done almost always, which is ugly
+			is it really?
+		but isn't it ugly for exops also?
+			for exops it's just some calls appended on top of the code
+			for inops it's a complicated expression with an eval
+				is it really complicated?
+
+==================================================
+;SERVER
+
+deflist corruption
+
+==================================================
+;BOOTSTRAPPING
+
+
+TODO update
+
+$-> without using "gate"?
+	think about that later
+
+fixed starting deflist
+stuff I want
+	basic exops
+	parts of subject
+	l
+	$->
+	$@*
+	*^
+		yay
+		nay
+
+
+reset
+	resets deflist to default
+
+boot expression
+
+exemplary recursive fexpr
+	just another "list"?
+
+subject threading?
+
+bootstrapper
+	takes a deflist
+	evals an expression
+	conses it onto a deflist
+
+subject-oriented bootstrapper
+	evals stuff using its own deflist
+
+
+bootstrapper that evals an expression using the input deflist
+
+bootstrapper that builds a coherent deflist
+
+rules for using deflists for bootstraping
+
+definition of deflist coherence
+
+useful incoherent deflists?
+	stuff using its own deflists
+
+coherence by immediate reduction
+
+coherent redefinition
+
+reduced & symbolic
+non-symbolic?
+
+rtpl
+	read, transition, print, loop
+	like repl, but transition does more stuff since defs are not to be manipulated as a side effect
+	evaluates stuff using rtpl deflist
+		only few ops used to manipulate returned state
+
+I don't use repls anyway
+
+do I want transitions that both give response and alter state?
+
+definition miss exception
+
+provisional internal deflist generator
+
+get- and post- like ops?
+	&*
+	&%
+
+replace dynamically scoped ops
+bootstrapping using a non-inop deflist
+
+==================================================
+;IMPLEMENTATION
+
+interning?
+  [definition]
+
+==================================================
+;DEFLIST INOP PROBLEM
+
+stack overflow
+	cause - omitting a quote
+	what happened?
+
+unintuitive stuff
+	additional quote in the deflist for defs that don't refer to args/locs
+	even more confusing with procedural defs
+
+inop constructor and quote in deflists
+
+memoize inop?
+	q*
+	not needed?
+
+removing cons in hardcoded inop defs
+	as in external def pock?
+	this doesn't happen in unreduced kreck
+
+==================================================
+;CLOSURE CALL PROBLEM
+
+preevaluated inop can't capture caller subject, so args can't be evaled
+
+the wrong way of doing it
+	inop = (code . ctx)
+	it gets applied as such:
+		*[subj, (inop args)] = *[(args . ctx), code]
+		it's wrong because ctx doesn't depend on subject
+	op is something that can encode any computable function of "subj" and "args"
+		rly?
+		"encode"
+			make the result of application depend of
+power in op being a result of an expression
+
+later
+	describe with hindsight
+
+non-solutions
+	returning code?
+		code is not an inop
+
+solutions
+	CL-like funcall
+		ugly
+	additional eval for inop application?
+		complicated
+			rly?
+				one more eval is one more eval
+		makes more sense anyway
+			inop vs closure
+			op is something that acts on the subject and args
+	calr from application?
+		yay
+		nay
+			breaks TCO?
+				rly?
+				does normal calr break TCO?
+					no
+		how about:
+			internal implicit TCO-friendly apply?
+				how?
+			seems really hacky
+			irregularity with exops
+
+calr with recursion/threading stays the same
+implicit calr would force the subject to grow
+
+=================================================
+;EXPLODING CTX PROBLEM
+
+was that the heap overflow thingy?
+
+==================================================
+;REC ARG EVAL PROBLEM
+
+does recursion fail because of calr?
+	yes
+rec arg eval problem
+ calr & subj
+
+so tco works after all when calr is just set to ($)?
+	it doesn't, it exhaused the heap
+	why didn't it exhaust the stack?
+		because it doesn't go "i need to eval Y before I finish evaling X",
+		it just conses stuff
+	is it TR sans cons?
+
+==================================================
+;SCOPES
+
+description
+
+loc@*
+  args vs subj
+
+rules for deflists in scope stack
+
+
+=========================
+;;old stuff
+
+complicated way
+  closure contains local defs
+
+just a deflist with makr lookup on miss
+  lisp
+  why kreck can't do it like this
+    evdef symop
+      are they really necessary
+      couldn't stuff like "args" just be "(args)"?
+        but symbolic reduction!
+
+
+
+[rewrite after fixing the issue]
+caller vs captured
+	caller captures the subj where the inop is constructed
+		does it make inops that use calr more complicated?
+			only if you plan to use them as anonymous functions
+				rly?
+				would that be useful for anything?
+					argument evaluation!!!
+
+
+nested scopes?
+
+deflist as list of alists?
+	defget assocs each list
+		noo, it's still just code
+	calr needs to be involved
+
+better name - captured
+captured defs depend on caller scope
+
+getcapt
+	describe solution using it
+		subj contains an alist of captured variables
+		(@* name) = (<getcapt> name)
+
+	is it deterministic?
+
+caplist?
+
+renaming locs?
+	env?
+
+staticizability
+
+
+non-scope definitons?
+
+static macros?
+	deflist and scope passed by macro to macros it expands
+	scoping macros receive scope in subj
+
+difference between solutions using static macros and not using them
+
+locdefs
+updefs?
+globdefs?
+
+subj threading?
+	op defined with a subj, inherits its locs
+unintentional capture?
+
+explicit capture?
+
+"let*" like semantics seem simple with subj threading
+
+going static by design?
+	yay
+	nay
+
+going dynamic with intent of deterministic deflist reduction
+
+simple lexical closure example
+	a -> (b -> (l a b))
+
+the problem
+	the name of outer function argument should refer to outer function argument in inner function deflist
+
+nesting defadds?
+
+imperative-looking let
+	subject modifying
+	for single variable
+	
+
+==================================================
+;STUPID
+
+
+should repl be an exop
+	the argument for it
+		it must be implemented in order to have a repl (obviously)
+		the principle of non-gymnastics
+	almost certainly no
+		why???
+			too complicated?
+^^ why is this stupid?
+	I don't want a repl
+		
+
+==================================================
+;WACKY
+
+pock that supports literals and improper lists
+
+kreck without "?"
+	church-style truth
+
+==================================================
+;UNCATEGORIZED
+
+is the choice between symlist in subject vs in operator the choice between lexical and dynamic scopes?
+and all the calr/makr stuff is for scope inheritance/overloading
+
+WASM compiler?
+
+lambda calculus is not that simple and not that well behaved
+krivine machine
+
+
+parser that's like that:
+  string, symlist -> (expr . new_symlist)
+
+displaying vector/hashtable literal
+  special syntax?
+    {a:5 b:6}
+    #(1 2 3)
+  sexpr
+    (@ (a 5) (b 6))
+
+tail call info tied to datatype?
+
+I don't like that tail call info is opaque
+
+machine state description in the subj?
+  after all "environment is explicit"
+  this seems a bit wrong
+environment contains everything that you need to compute the right result
+
+machine introspection is possible with some wild west ops
+
+[move to kreck]
+is multi-package interning really necessary
+  on a system scale it is
+
+
+lisp-like list evaluation
+  vs stuff like lambda calculus
+  is it just eager vs lazy?
+
+expression composition
+  ...takes stuff and evaluates it
+
+universal object 
+  length
+  number of children
+  children
+  data
+
+not code golf
+
+interning problem
+  interning is stateful
+  state is mathematically complicated
+
+krecky combinators are to SKI like natural deduction to hilbert style deduction 
+
+enironment is easily manipulated by programs
+
+splitting snip and eargs
+
+eargs
+
+eval-args
+calr-snip
+
+illusivity of estimating run speed
+
+rec instead of snipping?
+  yay
+    it's less confusing when TCO is explicit
+    it can be used with any inop
+      is that good
+    can use calr for stuff other than evaling args
+  nay
+    is it even possible with the new semantics?
+      just mock-call
+    
+nfn as fn with explicit deflist
+
+is tail-recursing on non-eager stuff even useful?
+
+faux aesthetics?
+        
+methods using calr?
+  -> operator
+
+cleanup
+  move/remove comments
+  unnecessary evals and quotes used to suppress them
+    $@q
+      no
+    inop
+      no, fn uses l
+      how about not using "inop" for fn?
+        copying code
+    fn
+    nfn
+waste of time?
+
+
+funarg problem
+  written about it somewhere
+    probably pld/pth
+
+write tests
+
+simple dilemmas section
+  simple but not quite obvious design decisions
+
+(args calr . this) = (args calr code defs . other)
+
+>-wrap
+
+atoms as boxes
+
+boxing and unboxing
+  enabling and disabling traversal
+
+GC objects
+  box flag separate from GC atom flag
+
+::, $-> should be primodial exops
+  easier to write than as inops
+
+functors, iterators and the like
+
+descripitons using sets?
+
+a case for vector subj
+  discarding stuff from a vector is O(1)
+  but for persistant vectors it's O(n)
+    still faster than for lists
+      rly? you often reuse parts of lists
+
+why doesn't external arg evaluation need consing?
+
+syntax and semantics of each symbol
+vv
+
+*[s (f . a)]] = *[(a . s) f]
+  f can bring stuff into subj using q, c and *
+
+*[(d . s) (f . a]] = *[(d a . s) f]
+*[(s . d) (f . a]] = *[((a . s) . d) f]
+*[s ((f . d) . a)] = *[(a s . d) f]
+^^ that's bad, because by default the operator carries its language
+  isn't that the point?
+
+*[s ((f . c) . a)] = *[((a . s) . c) f]
+^^ m is not needed, quote can be used
+  no, because the formula must be evaluated for the quote to mean something
+
+^^ (arg1 . stuff) is impossible
+
+
+the language should come from op by default
+
+some evals give power which isn't often needed, and can be walked around sometimes
+
+are conses from recursion neatly droppable?
+
+hash labeled debugging
+
+$*args that snip calr
+
+$*args snips calr
+rec puts subj in calr
+
+are other functions borken now?
+	only rec snips calr
+		that doesn't mean that gates are broken
+
+
+new op application
+	*(subj, (op . args)) = *((args . subj), op)
+		but deflist!
+
+
+the other way of metaprogramming - macros
+	ease of bootstrap
+	ease of use
+	power
+
+
+outr in locs?
+	yay
+	nay
+
+subj layout
+	(args locs outr . defs)
+	locs = ???
+
+just args?
+	(args this outr . defs)
+	outr = (calr . makr)
+
+proper list
+	(args locs outr defs)
+	simpler definitions
+		rly?
+
+mutual recursion
+	is calr a problem?
+			does it break TCO?
+		no, as long as you keep stuff you recurse with the same calr
+		is it safe otherwise?
+			discarding the calr
+	!!! recursion is not normal calls
+
+tail call with cons is obviously not TCO-able
+
+
+gates with loaders
+
+[meta]
+	meta section
+	gates
+	subj layout
+
+
+always double quote with "$@c"?
+
+op that creates a gate and wraps it around argument evaluator?
+
+can problem with fexprs be mitigated with a type system?
+
+(gate (loader f-loader) (deflist caller-defs)
+  code)
+
+code as an r-arg or e-arg
+
+calr
+makr
+
+argument tapes
+	raw
+	eager
+		get's evaluated with respect to caller
+	lazy
+
+sane gate construction
+	loader as arg?
+
+args & closures
+
+subject where the gate was created
+
+dynamic vs lexical scope
+
+rewrite "gate" using @->?
+
+fexprs for quote omission
+
+gate initializers
+	eager
+	with named arguments
+
+"gate" as eop?
+	yay
+	nay
+
+
+possibility explosion
+
+deflist inference for symbolic reduction
+
+layer separation on example of interpretter with a heap image
+	what about fn addresses
+		whatever, exop-apply implementation is not specified
+			should it be?
+				yay
+					examples like that
+				nay
+					avoiding implementantion details
+
+are fexprs really useful?
+	most metaprogramming can be better done with static macros
+		rly?
+
+it seems that fexprs just come in handy in kreck
+
+
+reframing kreck without the notion of atom?
+	literals
+
+if (nil . x) means a literal, is nil an exop?
+	no
+		it would have to be (nil x)
+if (nil x) means a literal, is nil an exop?
+	it can be in general
+	it cannot be if atom value is an exop address
+
+nil has no value
+
+		
+
+pock is not a subset of kreck
+	kreck has atomic exops
+	pock has literal exops
+
+pock used to call inops differently
+
+pock inops used to mean different thing also
+	without exops being literals
+	
+
+parse(expr, symop)
+	symop can even be an inop!
+
+ways of dealing with names
+
+what's a symbol anyway
+
+symbol is a thing that has a name that gets evaluated to
+stuff assigned to that name within the execution environment
+	how about my def evaling
+
+symbol is a thing that has a name that gets evaluated to
+stuff assigned to that name within the execution environment
+
+^^ uniqueness in scope?
+
+what's a name?
+
+most recent solution - "symbols"
+	(<evdef-op> name)
+
+non-symbolic solution
+	parser uses deflist
+
+^^but this can do less
+		symbols only live in strings
+	argnames?
+	stuff like "otherwise"?
+	qq?
+
+symbols for pock under the bridge
+	I didn't consider dynamic name resolution
+
+having dynamic names makes writng working code simpler
+reduction can be added later
+
+why it might be kinda ugly
+	irregularity
+	a hack with using fuction
+
+
+
+isn't evdef 'n stuff just adding complexity?
+	
+
+internality
+	using inops
+	using kreck code
+	not using external code other than exops
+
+aremhicity
+	subject?
+
+move gc stuff to c?
+	yay
+	nay
+
+patterns?
+	lazy let
+	eager let
+
+;subj-replace
+
+takes path & value
+
+path is a list of car-ops & cdr-ops that threaded from subj gives the desired object
+
+($p > > <) = (< (> (> ($))))
+
+replace for non-threaded paths
+	cons application of flipped op to path arg with recursion of path arg
+	cons arg order depends on path arg
+
+replace with stuff like "args"?
+	using symbolic code?
+	using reduced code?
+
+replace without redundant traversal
+
+using a zipper?
+
+reduction in replace
+	
+
+
+
+
+;misc?
+
+
+layers
+		what do they mean
+	0 - interpreter
+		eval & gc
+	1 - basic exops
+		$'<>:*?
+	2 - exops that
+
+"="?
+	yay
+	nay
+		if you have to wonder what semantics would it have, it shouldn't be here
+	if so:
+		eq?
+		equal?
+
+low level stuff should not get in the way when writing high level code
+this shouldn't be accomplished by flashing stuff
+	an example - writing interpreters in too restrictive language
+flashes should preserve end program semantics
+
+compilation
+
+
+;here
+
+basic exops shouldn't feel out of place when used in higher level programs
+
+should box be an op?
+	yay
+		consing nil to something looks a bit out of place
+		it behaves like an op
+	nay
+		more complicated
+		implementing it as nil is more than trivial even in C
+
+kreck has atoms, pock has boxes
+	should kreck have boxes too?
+		yay
+			pock becomes a subset of kreck
+			words, strings, stuff like that
+		nay
+			additional complexity
+
+not binding yourself to a specific type of complexity
+
+name resolution is something you can just add
+
+it would be nice if parser operated both on strings and streams
+	would it really?
+	why would you parse unbuffered text?
+
+the dumb parser uses reduced getdef
+	it has to
+
+should the dumb parser be a basic exop
+	yay
+		it's required to bootstrap stuff
+		the principle of not tarpitting
+			or something
+	nay
+		it's a bit complicated
+	
+
+pock isn't the old pock
+
+why is apply implicit?
+	it's everywhere
+	it makes things simpler
+		how?
+		substitution?
+
+repl state as just closure
+	transition is application with input code as arguments
+
+doer does
+	it's a function that takes stuff and returns another doer
+		rly? whatever...
+	doer is a subject which:
+		has a member called state
+		defines a transition operator
+		defines a return operator
+	doing it quick, doing it well
+
+printing done dumb
+	putchar, putstring
+	laziness?
+
+(do-in x)	
+
+subject modifying with implicit return in the end
+
+weird evals
+	doer
+		
+
+aura propagation
+	
+executable auras?
+	just higher order printing functions?
+	weird evaluator?
+		printed stuff put in subj
+
+booting
+	code evaluated with basic exops
+	getdef as a basic exop
+
+fexpr inops, regularity
+	all exops are fexprs aswell
+	can do lazy stuff
+	internalizes bootstrapping
+
+
+proving that deflist is deterministic
+	enforcing that
+or maybe not
+	just precomputing it
+
+call_exop in c impl
+	checking for validity of exops
+
+cycle-proofing gc is good anyway
+	cycles might be useful
+	for SnC cycle-proofing is not that hard
+
+if I were to write the c stuff again:
+	all global state is instantiable and bindable
+	use of error log
+
+
+calling closures inops
+
+why word checking
+	just "eq" requires interning
+	interning requires consing onto previous deflist
+	the parser would have to thread the deflist through each subexpression parsing
+
+seamless def removal
+	static substitution of deterministic defs
+
+notation for pure exops
+distilling rh whole pock/kreck deal?
+
+non-rec-fexpr-ctx?
+
+subj layout problems
+	single deflist everywhere?
+	multiple deflists
+		impl will change
+
+inop as an argument in substitutive semantics
+	it gets evaluated to a closure when it's an argument
+	it gets evalueated again when accessed before application
+		no, it doesn't
+			arg "getter" gets evaluated
+	
+
+^^maybe solutions are more obvious with a type system
+
+maybe I should learn haskell/ats first
+
+problem of different deflists
+
+design is hard
+
+
+the return/write problem
+
+it's worthless to write it when it evals in the same context where it's expanded
+	why?
+
+doing stuff the smart way is doing it defless right away
+doing it the way I've been trying to is premature optimization
+
+current plan
+	simple stuff, the dumb way
+	?monadic? interpreter
+	dumbness detection
+	everything but less stupid
+
+small deflist contexts
+
+metaprogramming using macros & fexprs
+
+exotic def-add
+	expanding
+	macro
+
+in pock (~ . stuff) must eval to itself
+	why?
+		quoting the quote?
+
+so the substitutive semantics aren't substitutive after all?
+	they aren't substitutive for 1st member of a call
+		rly?
+			they are if atoms eval to themselves
+	no, it's just that the old pock didn't evaluate stuff
+
+on the island I would write getdef as an inop
+  whaat that's retarded?
+
+(args . ctx)
+(args loc . defs)
+
+quote can be an inop!
+
+$<>:*?
+
+*(subj, (inop args)) = *((args . ctx), code)
+	where clos = *(subj, inop)
+				code = <(clos)
+				ctx = >(clos)
+
+
+subst semantics
+	saner arg getter
+	detachment from def stuff
+		less manipulation
+
+quoted code substitution problem
+
+I want runic hash tables and stuff
+
+improper list function
+
+safety isssue
+	1 in (1 2 3) is a valid exop
+	exop checking
+		do ordered C functions have ordered addresses?
+			nah
+	exop array and bounds checking?
+
+substitutive semantics, unnamed args
+
+named vs unnamed args
+	named
+		getvar behaves nicely
+			"old" is just (> ($))
+				but
+					dynamic scoping is rarely used
+						how about lets?
+							is it dynamic?
+					"old" can be a function
+		  not needing to mess with the deflist
+	unnamed
+		eval doesn't mess with names
+		args, arg1, etc are all functions
+
+		
+
+proofs
+	safety of mutation
+	correctness of macro output
+
+implicit fixed point recursion is possible with 2 eval inop, but the closure
+must be synthesized before
+	the  looks like this:
+		(("args" . args) ("rec" code . ctx) . ctx)
+
+dsl for doing things fast
+
+a fun vm
+	register
+		3 argument regs, result reg, pc, sp, fp
+		link register?
+	stack
+		call stack & ?operation? stack?
+		call stack only?
+		single stack and link register?
+
+
+the fundamental slowdown of massively internal language
+
+cool name for operators that work on caller's subj
+	are they impossible using 2 eval inop?
+		the caller's args
+			
+against 2-eval inops:
+	^^
+	literal op is more powerful than symbolized op, which is ugly
+
+
+
+minimal version
+	$ ' < > : * ? #
+	[formal descriptions of exops & inops]
+	op getter => inop | exop
+	*(subj, inop) = closure = (code . ctx)
+	@(closure, args) = *((args . ctx), code)
+	
+
+evlis is redundant for interpreter with
+evlis
+list
+another fork?
+
+better testing
+	always equal?
+	showing the result that failed
+	READ practical common lisp
+
+against fexpr inops
+	losing the subj
+
+very lispy
+	subj is an alist
+	closure is (code argnames . env)
+		argnames and args are pairlis-ed onto env
+			problem - low flexibility
+	alternative
+		(code acode . env)
+		acode is arg processing code
+			isn't it impossibly self-referential?
+	another one
+		args get aconsed as "args"
+			bindings are done internally
+
+parser doing sym -> (< (@ "sym" ($))?
+	yay
+		cool
+		minimizes number of exops
+	nay
+		complicated
+			that expression must be parsed or hardcoded
+				cons(prim.car, cons(cons(prim.assoc, cons(atom("sym"), cons(cons(prim.subj, nil()), nil()))), nil()))
+	alt
+		getvar exop
+			???
+				runic name?
+				@$
+			yay
+				simple
+			nay
+				a bit ugly
+
+eval with current subj op
+
+dyn, but simpler
+	parser just translates symbols to (@ key)
+	@ is find and eval
+		not just find?
+			ponder the "too many evals" thing
+		(@ key)
+	subj = (args ctx . dict)
+	dict is a list of alists
+		why not an alist?
+			append is meh
+				but pairlis?
+
+parser with syms & substitution macros
+	how
+		submacs begin with #
+	nay
+		submacs are to be thrown away eventually
+
+let
+	generates a inop call
+	old args get tucked into env
+		figured that out for pock already!
+	"olds"
+	expands lets inside
+		can eval them, with old deflist in olds
+problem of nested lets
+
+//
+pock?
+	syms are parsed as [~ string]
+		can be done in kreck aswell as (~ str)
+	defs by macro expansion
+		macro written using old parser
+
+interpreter with symbols & literals?
+
+interpreter which looks up every atom is probably slower than pock
+
+symbols in pock
+going symbolic
+	code is an slist, symbol or literal?
+		
+	same as before but atoms get searched when evaled?
+
+	
+literals as just atoms?
+	but then lists have to be proper
+		isn't code just proper lists anyway?
+
+???
+	atoms are evaluated by being searched in subj
+	no symbols
+	quotes are
+
+dynamic binding & static typing?
+
+"search" fun
+	finds a cell whose car is the argument
+	would require the subj to be a sexp
+
+symbol as a 2-element list instead of a pair?
+	yay
+		consistent with pock convention
+		easier to read when displayed naively
+	nay
+		one more pointer dereference
+			so what?
+
+"in" function? macro?
+env returning functions
+	is this monad related stuff?
+
+fast versions with proofs
+fast interpreter before a compiler
+
+probably should learn urbity names for stuff
+
+rec is calling stuff "in" current subj
+
+dynamic "method" names?
+
+progn
+
+literals and quote in kreck
+
+OOP like stuff in hoon
+
+let and quote
+	not lisp like
+		let is kinda another layer
+	that's not what I mean by let
+		let binds names to stuff evaluated at runtime
+		quoted code could end up stupid
+			let and quoted closure
+
+symbolic quotation
+	symbolic quasiquotation too?
+
+non-symbolic quotation resembles lispy quasiquotation
+
+evaluating data happens almost everywhere, with every inop
+
+does aremhicity make it so that the quote has to be the way it is and not like in lisp?
+	in lisp eval is evil
+	in aremhic languages itb
+
+aremhicity without dynamism?
+	dynamism
+		dynamic what?
+			typing
+			?binding?
+				is that "late binding"?
+
+let's think about static macros later
+	but "let" must be static
+
+quote as a parsing macro that creates a literal whose value is a stripped expression
+	but quote has runtime semantics aswell
+		is this ugly?
+	but quoted defs should be expanded anyway!
+		at least pock/kreck do it like that already
+		is Lisp like that?
+			yeah, probably using boxed/lazy symbols
+			that's what happens when you (eval (quote stuff))
+
+are dynamic macros not feasible?
+
+completely stripped version first
+
+reading pipeline
+	parsing into sexps
+	macro expansion
+	symbol expansion
+	stripping
+
+On the island I would've just done the symbol sentinel to avoid the hassle
+
+symbols in lisp
+
+p- n- s- expressions, different layers of internality
+	p-exp - cell or nil
+	n-exp - cell or atom (which can be a nil or not)
+		non-nil atoms are an abstractions of what would be lists in p-world
+	s-exp - cell, symbol or literal
+		symbols are an abstractions of what would be lists in p-world
+
+problem of symbols in internal environment
+	gc?
+
+proper lists & avoiding ambiguity?
+
+is quote a macro?
+quote & macroexpand
+
+s-quote?
+
+are macros more difficult now?
+	mqq muq muqs?
+
+those are sexps!
+	the stuf I've been doing earlier were just trees
+
+
+proving inambiguity when transforming between parsing domains
+
+on substrings
+	origin start end
+
+what seems like a stupid trick
+	what?
+		before next code packet
+		find string lengths
+		sum them
+		malloc & copy
+	meh
+
+externality using metadata
+	interning before stripping
+
+internal interning
+	or is it external interning?
+	metaspace interning
+	internal list of mallocs
+
+is dale completely nogc?
+
+kreck in lisp?
+seggies are a waste of time
+	that's the whole point
+
+infinite loop test with SnC
+	it seggies
+		it fills up the heap and then does weird stuff
+		is it really tail recursive
+			it doesn't seggie if gc get's called every loop
+
+separate preprocessing layer?
+	static macro expansion
+
+TODO
+	describe different approaches and the levels
+
+		
+
+source alloc problem
+	intern strings as a last step of reading
+
+stripping
+	optional?
+
+separating levels makes ambiguities impossible
+	why?
+
+intern, intern-words as malloc & copy
+	I don't want GC to move big pieces of data about
+
+stuff can be parsed to (metadata . stuff) in general
+	things like malloc pointers
+	which can be collected and stored at some step
+		doesn't it lead to ambiguity?
+
+symbols get parsed to a (name . sym_sen)
+	why not (name . def) ?
+		nil for literals
+^^ wouldn't it create ambiguity with pairs?
+	no, nil -> (nil . nil)
+strings get parsed to (string  . lit_sen)
+nums go (num . lit_sen)
+
+using sentinels as literals doesn't break anything, because it becomes (sentinel . sentinel)
+what about quotes?
+	if the expander doesn't expand quoted stuff, what does it return?
+		all this could be avoided it there was no expander and just symbols
+	it might expand quoted stuff, it won't matter
+
+symbol sentinels as pairs and possible ambiguity //as pairs on which level? what are the levels?
+	it seems like stuff won't break, but symbols would have another meaning than in lisp
+		symbols with the same name would not necessarily be eq
+			doesn't it kinda happen in lisp when symbols are in different packages?
+
+difference in parsing strings and syms?
+
+definitions are kinda like let*
+
+when are "let" bindings evaluated?
+
+lazy let?
+
+"let" is a preprocessing macro
+	it appends new bindings to a symlist and expands the body using it
+
+final code is name invariant
+
+
+the flow of data when evaluating an expression using an internal system
+
+definitions as threaded lets?
+
+step back and think about the island?
+	read the notes
+	learn some hoon & haskell
+			
+constants, variables, identifiers
+
+problem of substrings
+	allocating new mem for new substring seems wasteful
+		copying them even more so
+
+[to phil?]
+problems of wishy-washiness
+	usually speed vs sanity
+
+linking dependent definitions
+a non-interning parser
+
+concurrent parsing and conflicting symlists
+
+"def" op interpreted by parser?
+	yay
+	nay
+		clusterfuck
+
+the master subject
+	symlist
+
+internal parsing
+	subject updating?
+
+keeping the old parser?
+	needed for bootstrap
+
+symbols can be locally bound aswell
+
+new parser
+	str, symlist ->  expr, str' symlist' ?
+	stuff:rest symlist -> (assoc symlist stuff word_equal), rest, symlist'
+	"stuff" -> string("stuff"); //the other stuff
+	n=1A2B3C -> atom(&n, 3);
+
+evaluation
+	same as before, but with extra cdr
+		rly???
+
+what's opval then?
+	opres
+
+opname
+opval
+opres
+	
+
+do symbols really break layer separation?
+	it's just a pair!
+		is it really?
+
+"noun" vs "a"?
+	generic names can be 1 letter
+	in opval or parse it should be "noun"
+	in "noun_copy", each argument has different purpose
+		what?
+		contrast with "cons"
+	how about when arguments with other types are present
+		defadd
+			should be value
+				maybe even void pointer
+		write?
+			"a" seems sensible
+				it's just a noun
+
+ops with metadata
+	it's just one more dereference when done naively
+	might make debugging much easier	
+
+
+using the heap to return pairs?
+	yay
+		not neading superficial structs
+		more similar to the inner code
+	nay
+		slower
+			hardly a problem?
+
+parser that also generates a symlist
+	yay
+		heap can be smaller
+	nay
+		finding in list is O(n)
+			hash tables can solve
+		executable kreck doesn't preserve variable names
+			should it?
+				it would become lisp with a subject then
+					would it be bad?
+
+is interning necessary for internal parser?
+	can't do hashes
+
+how about interning using word-sized atoms?
+	ugly?
+
+fexpr variant can be made to differ by just one line
+with ifdef to switch between them
+
+kreck with
+	fexpr inops
+		(code . env) = *inop
+		*(subj . (inop args)) = *((args . env) . code) //dots
+	function inops
+		(code . env) = *inop
+		*(subj . (inop args)) = *((*/args . env) . code)
+		
+
+can internal macro be a fexpr?
+
+macros with same syntax as fns/fexprs?
+	I can always all them starting with a "!"
+	& call fexprs starting with something else
+		but non single char quote would look ugly
+
+malloc as an exop in kreck?
+
+keeping big stuff in the metaspace
+	requires the big stuff to have deallocators
+	it also requires the language to call the deallocators
+
+counting snc collections in roots?
+	only the number in the root with the lowest index matters
+	but a program can return the higher root instead
+	no, it can't be done
+
+
+long atoms
+	atom is a (sentinel . length) pair
+	and the stuff [length] after it
+	atoms are printed in hex by default
+
+length in words or bytes?
+
+printing without leading zeros
+	find most significant word
+	find most significant nibble
+	print all significant nibbles
+
+
+string problem
+	parse to symbols?
+		but the symbol list must still contain strings
+	
+
+making it usable
+	repl
+	source file reading
+	server
+
+internal deflist, internal parser
+
+separating the interpreter from the rest
+
+auras?
+
+[on source edition clutter in C]
+
+exop sets
+	basic
+		subj
+		car
+		cdr
+		quot
+		cons
+		cond
+		eval
+		macro
+	wordwise
+		ldr
+		str
+		add
+		sub
+		mul
+		div
+		mod
+		bit-not
+		bit-and
+		bit-or
+		bit-xor
+
+
+
+ops & defs
+	another file?
+
+multi-defines, internal defines, is using external deflist internally OK?
+
+exop macros?
+
+an exop
+
+a case for dynamic variable name resolution
+		no need for auras
+		might make things easier
+	but
+		shallower metaprogrammability
+				rly?
+			type system becomes external
+				nope!
+			building an internal type system becomes ugly
+				how?
+
+less lispy kreck is simpler kreck
+	only atomp
+		or wordp
+	0 atom is nil
+
+car & cdr of atom & nil
+	always error
+		yay
+		nay
+	error for atom, nil for nil
+		yay
+		nay
+	always nil
+		yay
+		nay
+
+
+car, cdr, roots
+
+error archtiecture
+	error sentinel & log
+
+can it beat forth at the ease of primitive implementation?
+
+C-level DSL in kreck
+	
+writing kreck interperter in kreck should be easier than in C
+	macros
+
+is iterating improper lists easy after all?
+
+nil
+	null pointer
+		yay
+			one less LDR
+			simpler iteration
+			empty lists look like empty lists when printed naively
+			less confusing
+				is it?
+				[to phil] is this question approachable in a good way?
+		nay
+			although nils are atoms, they have to be dealt with very differently
+			since kreck is untyped,
+	zero atom
+		yay
+			simpler predicates
+		nay
+			naive writer writes 0 for an empty list
+			type "list of numbers or a number" impossible to define naively
+				is that a problem?
+	"nil" string pointer
+		nay
+			cumbersome
+	"nil" symbol pointer?
+		nay
+			cumbersome
+	how about version with bound checked atoms?
+
+to define a type naively
+	the instance of such type does not have metadata
+	pock
+
+		
+atoms by pointer comparison?
+	yay
+		saves heap space
+	nay
+		possibly slower
+			rly?
+			it's one more reference to a cell, which may not be cached
+				I expect them to be cached, they are used frequently
+					for example when iterating over a list
+				On archs with a lot of registers such as RISC-V I would
+					even expect them to permanently sit in 2 registers
+						Would they?
+						are compilers smart enough?
+						What about arm?
+		I want atoms to be gc'd aswell
+			"I want everything that I would find in normal lisp code to be GCd"
+				strings & symbols
+			external memory management for stuff like arithmetic would be a hassle
+
+
+testing the gc
+	examples should include
+		trees where many pointers have the same value
+		trees containing cells from different frames
+	after the cleanup
+		all cell pointed to by roots are in the current heap
+		the trees are correct
+		tree sizes are the same
+			
+nilfill
+tree_size
+
+kreck the wackiest
+	what?
+		if op is an atom, external fexpr call
+		if op is a list, kreck function application
+	why not function call atoms?
+		The interpreter would be more complicated
+		Fexprs generalize nicely
+		Eval the fexpr's arguments and you get a function call
+		Eval the result and you get a dynamic macro
+	why not fexpr call closures then?	
+		then it doesn't work as lisp and you'd have to put evals everywhere
+
+[move to C style file?]
+secondary return values passed as pointers with names ending in "_ret"
+	yay
+		I don't like structs as return values, too much clutter
+		This way of doing things is ugly too, but oh well
+	nay
+		but it's confusing!
+
+
+operator functions take subj and arglist and return flag
+
+why is refcounting slower than snc?
+	deallocation with refcounts needs to go through garbage
+
+qemu arm
+
+
+static locals in asm
+	addresses relative to instruction pointer
+
+register machines aren't scary! you can just compile stupid code
+that doesn't move stuff between registers
+
+==================================================
+;OLD
+
+
+testing for full heap inside gc function body or outside?
+	inside
+		condition is not duplicated in different functions that use
+			it shouldn't be!!! [unexpected refactor]
+	outside
+
+atoms are just address sized numbers
+builtins and foreign functions are just atoms
+kreck functions are just lists
+pock + ldr, str, exe
+
+
+
+should arithmetic operations be inner or outer?
+what about floats?
+
+should calling outer stuff be explicit?
+	yay
+		it's dangerous
+	nay
+		it's done often
+
+interning
+
+design principles
+	pock but interacting with the machine
+
+an easy to write natively, deep metaprogramming language
+
+difference from pock
+	metacircular evaluator with atomic ops?
+
+write pock first, then do kreck
+
+lispier?
+	executing non-reserved atom causes lookup in the list stored at (car subject)
+	yay
+	nay
+
+wackier?
+	how?
+		always exec atoms without evaling args
+		evaling args must be compiled in the executed code
+
