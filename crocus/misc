@@ -98,26 +98,107 @@ glue up as much as possible
 ;WRITEUP
 
 
-Crocus - it's basically adblock^2
 
-a search engine that doesn't index sites with ads
+Crocus is a search engine that tries to not index pages with ads.
+
+It's basically adblock squared
+With adblock you don't see the ads;
+With cocus you don't see pages which try to show the ads
+
+You want that, because presence of ads correlates with low quality content that is often
+purposfully written to direct your attention to ads.
+
+Right now it runs on my laptop but can be accessed through a github.io page thanks to PeerJS 
+I'll host it properly when I'll be able to afford it.
+It needs scale to get really good.
+
+How it works (right now):
+
+the heuristc
+  Why?
+    my laptop slow
+    my disk small
+    internet big
+    very very big
+
+Common crawl list of domains
+filter homepages
+crawl websites
 
 
-a search engine for the part of web that's actually interesting
 
-adblock doesn't block intention to block ads
+Testing pages for ads
+open pages with a headless browser and test them for ads using [library]
 
-an attempt at making the internet awesome again
+crawling using scrapy
 
-search engine for the non-garbage internet
+It seems to me that a skilled person could do the whole thing better in like 2 days.
 
+business model:
+servers need food
+people do too
+open source everything
+make the unpaid users wait a little bit
+
+
+TODO:
+  pipelining
+  semantic search
+  scaling
+  money-making
+  
+
+
+Crawling
+
+Indexing & search
+Right now it uses Quickwit.
+I want 
+
+
+Why "Crocus"
+
+
+So I took up what I call "subtractive gardening"
+
+After I pulled all the plants I thought I had enough out there somewhere, the couch grass started popping everywhere.
+It's really weird when you accidentally summon the genetic algorithm against you...
+
+Later that night
 
 50000 crocuses
 	weirdness without hype
 		not that hype is necessarily bad
 
+all the japanese liverworts
 
-sites to be read and navigated
+I thought "This kicks ass! If I were to google liverworts nowadays, I'd get "we value your privacy" popup and 
+then an article... oh wait, a "newsletter popup"... umm, an "article" copywritten by some poor soul who isn't really into gardening;
+who had to stretch 4 liverworthy sentences into a 3 page litany to be then diluted 50/50 by ads and "suggested articles"; and also to hit all
+the SEO keywords or something. 
+
+The old web was soo cool
+Even complete balderdash was written by people who care
+It was all so information dense
+You could tell that any writing was edited down, rather than stretched
+people there had more IQ
+but also there was no money in ads 
+The internet users were not a considerable market for almost anything
+The next day I thought about what makes the today's web crappy
+I thought... Popups... Ads... Newsletters... Crapy writing... ads!
+Maybe it all stems from ads
+and ads are the easiest to filter out
+
+So first I wrote a filter for google search...
+First I wrote a python script that looked for URLs pointing to known ad servers.
+It worked quite poorly. Interestingly enough, it worked better when googling for
+Polish sites.
+Then I did the headless browser thingy I mentioned earlier, but only waited for ads
+until DOMContentLoaded event fired.
+I still got about 50% false positives.
+
+
+
 
 
 
@@ -125,6 +206,7 @@ what is the web for
   getting information
   does JS improve you getting the information
 
+if you're looking for sites to be read and navigated, you don't need js
 
 
 spartan nojs
