@@ -300,6 +300,10 @@ equivalent of a component in elm
 ==================================================
 ;UNCATEGORIZED
 
+the reason for not doing default prop check on components is that passing
+"global" objects is often convenient
+  it's warm code
+
 react/preact
   reducer initialization 
   callback hooks 

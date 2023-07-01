@@ -1,3 +1,35 @@
+making the functions warmer
+  pass the whole state
+  return stuff that might be also needed
+
+returning locals as an object with their names preserved as property names
+hot return: return all locals
+
+datum embedding
+
+icell -> icellContent
+
+the problem is, I keep reasoning using the more general object
+
+theory of implicit references
+
+what I've been doing is juggling between different ways of referencing what I needed
+
+there's a reason not to use the most general object
+
+which relations or non-relations I care about
+
+in Q-tic stuff can be index-agnostic
+
+this can be a rule of thumb for stuff larger than short scripts
+it's better than globals though
+  because you know it's warm
+
+state and constants
+  
+theory of wiring
+  it sux
+
 "collapsed" set
 count line size along direction
 write line sizes to all cells on the line (or entries)
