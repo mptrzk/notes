@@ -139,6 +139,16 @@ handling fragments within fragments
 ==================================================
 ;UNCATEGORIZED
 
+story behind vsmth
+  do component props do anything?
+  all I want it to do is to redraw board
+    and the only way I can do is to change a pointer
+    and changing that pointer means copying stuff
+      - "but immutability is a good practice"
+      - I'm already mutating stuff that's way too expensive to copy anyway
+
+useEffect in vsmth?
+
 writeup
   a view-model VDOM library, but more hacky, less opinionated
   model is implicit, unless you make it explicit

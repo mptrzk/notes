@@ -300,6 +300,21 @@ equivalent of a component in elm
 ==================================================
 ;UNCATEGORIZED
 
+react/preact
+  reducer initialization 
+  callback hooks 
+  does effect hook run when refs are bound?
+    does the hook order matter here?
+      ref hook isn't really needed
+      is there anything more to the ref hook?
+    should it?
+
+
+immutability and the shallow checks
+  only if component props are actually checked
+  and they aren't in Preact
+  but if you want them checked, you just pass them to useMemo hook
+
 ah so react does the shallow eq for state changes, not for props changes
   that sounds like a weird decision
     it forces immutability, but otherwise seems useless

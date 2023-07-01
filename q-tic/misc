@@ -1,37 +1,16 @@
+"collapsed" set
+count line size along direction
+write line sizes to all cells on the line (or entries)
+
+
+generic bf/df iteration?
+
 
 why it still works?
   maybe components are redundantly evaluated
   preact re-renders all components without diffing their props
 
-[move]
 
-react/preact
-  reducer initialization 
-  callback hooks 
-  does effect hook run when refs are bound?
-    does the hook order matter here?
-      ref hook isn't really needed
-      is there anything more to the ref hook?
-    should it?
-
-
-story behind vsmth
-  do component props do anything?
-  all I want it to do is to redraw board
-    and the only way I can do is to change a pointer
-    and changing that pointer means copying stuff
-      - "but immutability is a good practice"
-      - I'm already mutating stuff that's way too expensive to copy anyway
-
-useEffect in vsmth?
-
-immutability and the shallow checks
-  only if component props are actually checked
-  and they aren't in Preact
-  unless I did s
-
-but I copied the whole state in the previous thingamaboggles
-  so?
 
 but really, why is separating the game state and the UI a good idea?
   reducing number of invalid states?
