@@ -1,3 +1,56 @@
+make "opposite" pure
+  "disabled" cells should make invalid moves impossible
+
+thick wire paradigm
+  return eveyrthing that was computed
+
+what's "Array"
+  why "new" isn't used when calling it
+
+figure out prototypes well enough to explain them
+
+"disabled" as player?
+  disabled as having no "opposite"
+
+middle icell is different
+
+dude, 
+
+targetOcell or something
+
+just including modules from node_modules?
+maybe stuff even comes minified
+
+argument padding in js as a design consideration
+
+defining a map for all elements, as a general strategy for doing stuff to complicated
+datastructures?
+  isn't that how functors are used?
+  don't think so
+
+explain window.stuff in modules
+
+components instead of functions and debugging
+
+that htm thing is really meh
+
+decorated array
+
+ocell carpet
+  ocell attached to a graph of other ocells
+  method that works when attaching anywhere:
+    attach(a, b, dir): #attaching a to b:
+      b == null -> null
+      a[dir] = b
+      b[-dir] = a
+      attach(a,p rotr(dir)) ??????????/
+      attach(a, rotr(dir))
+  method that wroks for rectangular carpets
+    N, W, NW
+
+
+pairwise mapping with direction
+
 making the functions warmer
   pass the whole state
   return stuff that might be also needed
@@ -131,3 +184,5 @@ separate model and view
     they are just gray when they're empty
 
 using stash instead of multiple files
+
+sme people would like people to be courteous to them without sincere affection
