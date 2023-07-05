@@ -98,14 +98,25 @@ glue up as much as possible
 ;WRITEUP
 
 
+  Crocus is a search engine that tries to not index pages with ads.
+  Crocus is a search engine that tries to not return pages with ads.
+  Crocus is a search engine that tries to not show pages with ads.
+  Crocus is a search engine whose results don't contain ads.
 
-Crocus is a search engine that tries to not index pages with ads.
+  Crocus is a search engine that doesn't show pages that try to show ads
+  Crocus is a search engine that doesn't show pages that try to display ads
 
-It's basically adblock squared
-With adblock you don't see the ads;
-With cocus you don't see pages which try to show the ads
 
-You want that, because presence of ads correlates with low quality content that is often
+Crocus is a search engine that tries to not index crappy websites,
+Which I think mostly comes down to not indexing websites that make money by showing people ads,
+
+Which I think mostly comes down to not indexing pages with ads.
+
+
+
+It's basically adblock squared. With adblock you don't see the ads.
+With cocus you don't see pages which try to show the ads.
+You want that, because presence of ads correlates with low quality content that's
 purposfully written to direct your attention to ads.
 
 Right now it runs on my laptop but can be accessed through a github.io page thanks to PeerJS 
@@ -114,12 +125,18 @@ It needs scale to get really good.
 
 How it works (right now):
 
+The main heuristic for now is that:
+"If a homepage of a website doesn't contain ads, it's unlikely that other pages on that site do"
+
 the heuristc
   Why?
     my laptop slow
     my disk small
     internet big
     very very big
+
+right now it just does keyword search using quickwit
+eventually I want to have some weird language model conversational shit, where I can say "naah, what I acually meant was this and that"
 
 Common crawl list of domains
 filter homepages
@@ -177,6 +194,8 @@ then an article... oh wait, a "newsletter popup"... umm, an "article" copywritte
 who had to stretch 4 liverworthy sentences into a 3 page litany to be then diluted 50/50 by ads and "suggested articles"; and also to hit all
 the SEO keywords or something. 
 
+10 Useless ways to do something stupid
+
 The old web was soo cool
 Even complete balderdash was written by people who care
 It was all so information dense
@@ -200,6 +219,7 @@ I still got about 50% false positives.
 
 
 
+If you've made something better, email me!
 
 
 what is the web for
@@ -254,6 +274,9 @@ one of those ad boards
 
 scaling
   kafka?
+
+ranking n all when stuff's bigger than it would fit in ram
+  use some persistant storage
 
 read:
 https://realpython.com/python-async-features/
