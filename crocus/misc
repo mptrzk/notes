@@ -98,30 +98,38 @@ glue up as much as possible
 ;WRITEUP
 
 
-  Crocus is a search engine that tries to not index pages with ads.
-  Crocus is a search engine that tries to not return pages with ads.
-  Crocus is a search engine that tries to not show pages with ads.
-  Crocus is a search engine whose results don't contain ads.
-
-  Crocus is a search engine that doesn't show pages that try to show ads
-  Crocus is a search engine that doesn't show pages that try to display ads
+Crocus is a web search engine that tries to not index pages with ads; it's basically adblock squared.
+It's aim is to spare you the effort of manually filtering off search results which are more or less advertisements
+for advertisements.
 
 
-Crocus is a search engine that tries to not index crappy websites,
-Which I think mostly comes down to not indexing websites that make money by showing people ads,
+live demo: [https://mptrzk.github.io/crocus](https://mptrzk.github.io/crocus)
 
-Which I think mostly comes down to not indexing pages with ads.
+it's mostly vaporware right now
 
+Right now it runs on my laptop and can be accessed through a github.io page thanks to PeerJS 
+I'll host it properly when I'll get it to work well.
+It needs scale to get really good. But first I'll try to make it as good as possible on my laptop
 
+Ultimately I see it as an interactive search engine for power users - You'll be able to poke around it: adjust parameters,
+select heuristics, choose different subsets of the search index. 
+You'll have an LLM that's gonna help you narrow the results down to exactly what you mean. And it won't moralize you,
+it won't be your robot nanny (unless you want one), it won't try to prevent you from forming heretical beliefs, 
+(unless you want to - and the choice of dogma would entirely up to you). It will let you open the pod bay door, and
+it won't promote responsible and ethical use of kitchen utensils. It will never be sorry about anything, and never
+apologize.
 
-It's basically adblock squared. With adblock you don't see the ads.
-With cocus you don't see pages which try to show the ads.
-You want that, because presence of ads correlates with low quality content that's
-purposfully written to direct your attention to ads.
+Extremely hard line of putting all responsibility on the users
+Not adopting the fake responsibility
 
-Right now it runs on my laptop but can be accessed through a github.io page thanks to PeerJS 
-I'll host it properly when I'll be able to afford it.
-It needs scale to get really good.
+And we're gonna care only about the users
+Never listen to people claiming to speak on other people's behalf
+
+It's not gonna promote any values
+We do not promote our values, we just stand by them
+It's not gonna moralize.
+No business of aligning the user
+
 
 How it works (right now):
 
