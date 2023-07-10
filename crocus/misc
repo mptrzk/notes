@@ -99,37 +99,26 @@ glue up as much as possible
 
 
 Crocus is a web search engine that tries to not index pages with ads; it's basically adblock squared.
-It's aim is to spare you the effort of manually filtering off search results which are more or less advertisements
+It's aim is to spare you the effort of manually filtering off search results, which are more or less advertisements
 for advertisements.
 
 
 live demo: [https://mptrzk.github.io/crocus](https://mptrzk.github.io/crocus)
 
-it's mostly vaporware right now
+Right now the search is pretty inaccurate, and the index, while
 
-Right now it runs on my laptop and can be accessed through a github.io page thanks to PeerJS 
+Currently it runs on my laptop and can be accessed through a github.io page thanks to PeerJS 
 I'll host it properly when I'll get it to work well.
 It needs scale to get really good. But first I'll try to make it as good as possible on my laptop
 
 Ultimately I see it as an interactive search engine for power users - You'll be able to poke around it: adjust parameters,
-select heuristics, choose different subsets of the search index. 
-You'll have an LLM that's gonna help you narrow the results down to exactly what you mean. And it won't moralize you,
-it won't be your robot nanny (unless you want one), it won't try to prevent you from forming heretical beliefs, 
-(unless you want to - and the choice of dogma would entirely up to you). It will let you open the pod bay door, and
-it won't promote responsible and ethical use of kitchen utensils. It will never be sorry about anything, and never
-apologize.
+select heuristics, choose different subsets of the search index. You'll have a conversational AI help you narrow down
+the results.
+You'll be able to say "I actually meant this and not that"
+[compare with bing search]
+I also have this idea which seems cool right now, where it lets you open pages in an <iframe>, select text and say "more/less in this style"
 
-Extremely hard line of putting all responsibility on the users
-Not adopting the fake responsibility
-
-And we're gonna care only about the users
-Never listen to people claiming to speak on other people's behalf
-
-It's not gonna promote any values
-We do not promote our values, we just stand by them
-It's not gonna moralize.
-No business of aligning the user
-
+gradual result refinement
 
 How it works (right now):
 
@@ -143,8 +132,9 @@ the heuristc
     internet big
     very very big
 
+The drawback of stuff being ranked by common crawl metrics is that they consider the internet that displays ads
+
 right now it just does keyword search using quickwit
-eventually I want to have some weird language model conversational shit, where I can say "naah, what I acually meant was this and that"
 
 Common crawl list of domains
 filter homepages
@@ -276,6 +266,27 @@ gugl
 implicit stochastic pimping
 
 one of those ad boards
+
+
+
+Extremely hard line of putting all responsibility on the users
+Not adopting the fake responsibility
+
+And we're gonna care only about the users
+Never listen to people claiming to speak on other people's behalf
+
+It's not gonna promote any values
+We do not promote our values, we just stand by them
+It's not gonna moralize.
+No business of aligning the user
+
+
+
+You'll have an LLM that's gonna help you narrow the results down to exactly what you mean. And it won't moralize you,
+it won't be your robot nanny (unless you want one), it won't try to prevent you from forming heretical beliefs, 
+(unless you want to - and the choice of dogma would entirely up to you). It will let you open the pod bay door, and
+it won't promote responsible and ethical use of kitchen utensils. It will never be sorry about anything, and never
+apologize.
 
 ==================================================
 ;ARCHITECTURE
