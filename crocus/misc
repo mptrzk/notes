@@ -105,9 +105,9 @@ for advertisements.
 
 live demo: [https://mptrzk.github.io/crocus](https://mptrzk.github.io/crocus)
 
-Right now the search is pretty inaccurate, and the index, while
+Currently the search is pretty inaccurate; and the index while 
 
-Currently it runs on my laptop and can be accessed through a github.io page thanks to PeerJS 
+Right now it runs on my laptop and can be accessed through a github.io page thanks to PeerJS 
 I'll host it properly when I'll get it to work well.
 It needs scale to get really good. But first I'll try to make it as good as possible on my laptop
 
@@ -120,7 +120,7 @@ I also have this idea which seems cool right now, where it lets you open pages i
 
 gradual result refinement
 
-How it works (right now):
+How it works (this will change massively):
 
 The main heuristic for now is that:
 "If a homepage of a website doesn't contain ads, it's unlikely that other pages on that site do"
