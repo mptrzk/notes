@@ -3,7 +3,6 @@
 
 sections
 todo
-hackier
 writeup
 architecture
 filter
@@ -18,109 +17,115 @@ uncategorized
 ==================================================
 ;TODO
 
-that ranking bug
-  why does it give such crappy results?
-
-text wrapping
+make the peerjs client get a peer with each search result
 
 quickwit index timeout thing
 
-bridge server
-  timeout
-  fetch error handling
-
 index selection
 
-
 what's a vector store?
-
-filter load problem
-
-jobdir for carwler
-memory leak?
 
 custom ranking
 
 weights
   they don't work!
 	https://github.com/quickwit-oss/tantivy/issues/547
+  quickwit's gonna get yeeted prolly, though
 
 proper filter testing
 	additional optional column for expected result?
 
 adserver in sources filter
+  ???
 
-a bit more wait in filter to reduce false positives
+index selection dropdown list
+nojs index
 
-symlink on github page?
+result pagination / loading moar pages
 
 make the http and peerjs version use the same page layout
   html file can be the same, but with different scripts linked
 
-make the peerjs connection terminate on each search
-
-move status messages up above each result
-
-the fustercluck with the bridge files
-  crocus/bridge-clinent, search/static/bridge-server
-  yeet the bridge stuff to the "static"
-  yeet the static to the top
-    name it "front"
-
-
-ui
-  better layout
-  status messages
-    waiting for the dust to settle
-    connecting
-    connected <--yeet that in "connectionless" version
-    searching
-    no resuls
-  disabling the search bar when not connected
-
 making it render properly on mobile
 
-index selection dropdown list
-
-try nojs index
-
-multiple pages
-
-about page
-  inserting images nicely
-
-==================================================
-;HACKIER
-
-glue up as much as possible
+make the PeerJS client get a peer only after search happens
+make the peerjs connection terminate on each search
 
 ==================================================
 ;WRITEUP
 
+what it is right now [nameless section]
+  why you'd want it
+  demo link
+  what the demo demonstrates
+  broader vision
+todos
+  more of an exploration of course of action
+  technical stuff
+backstory [but why crocus?]
 
-Crocus is a web search engine that tries to not index pages with ads; it's basically adblock squared.
-It's aim is to spare you the effort of manually filtering off search results, which are more or less advertisements
+repo description
+  Crocus search - it's basically adblock squared.
+
+
+Crocus is a web search engine that tries to not index pages with ads. It's basically adblock squared.
+
+It's goal is to spare you the effort of manually discarding search results which turn out to be more or less advertisements
 for advertisements.
+
 
 
 live demo: [https://mptrzk.github.io/crocus](https://mptrzk.github.io/crocus)
 
-Currently the search is pretty inaccurate; and the index while 
+Right now it runs on my laptop and can be accessed through a github.io page thanks to PeerJS.
+I'll host it properly when I'll get it to work reasonably well.
 
-Right now it runs on my laptop and can be accessed through a github.io page thanks to PeerJS 
-I'll host it properly when I'll get it to work well.
-It needs scale to get really good. But first I'll try to make it as good as possible on my laptop
+It needs scale to get really well. But first I'll try to make it as good as possible on my laptop
 
-Ultimately I see it as an interactive search engine for power users - You'll be able to poke around it: adjust parameters,
-select heuristics, choose different subsets of the search index. You'll have a conversational AI help you narrow down
-the results.
-You'll be able to say "I actually meant this and not that"
+It's mostly vaporware for now: the index is tiny (about 10GB: Google had 147GB in 1997) and the search accuracy is really poor,
+since it just uses keyword search and a very primitive ranking scheme.
+
+For now the search engine closest to what I'm trying to accomplish is [Wiby](https://wiby.me). Go check it out.
+It's cool. It doesn't seem to do semantic search though.
+
+
+
+### The big big vision
+_(Since the subject matter is for now beyond my capabilities, technical claims in this sections may be dubious)_\
+Ultimately I want it to be an interactive search engine for power users - I want to be able to poke around it: adjust parameters,
+
+select heuristics, choose different subsets of the search index. I want to have interactive semantic search, where I can 
+
+Because Internet is big, and
+
+Since I want semantic search, I'll probably move away from keyword search, and store the documents as vector embeddings of text
+or what not
+
+
+I want to have an AI assistant to help me narrow down
+the results. I want to be able to select some results and be like "not like that"
+You'll be able to say "I actually meant this and not that, see"
+And It'll ask you if it understands correctly
+
 [compare with bing search]
-I also have this idea which seems cool right now, where it lets you open pages in an <iframe>, select text and say "more/less in this style"
+I don't want it to be like Bing, where an LLM generates a query performs a regular search and shows you a handful of results it determined
+to be relevant, based on what it just read about them.
+It seems crude for it to be writing text queries
 
-gradual result refinement
+I'd also like to be albe to select text on page and tell the search engine "see? this is what I don't like about this page"
 
-How it works (this will change massively):
+I don't know if the AI tech to do that is there yet, but if not, I bet it will be there soon
+
+
+
+Maybe the assistant will ask YOU questions
+It'll narrow down context of whatever you're trying to do, poke around your knowledge, point out gaps in it
+
+
+
+
+
+### How it works (for now):
 
 The main heuristic for now is that:
 "If a homepage of a website doesn't contain ads, it's unlikely that other pages on that site do"
@@ -157,7 +162,7 @@ make the unpaid users wait a little bit
 
 
 TODO:
-  pipelining
+  sane persistant storage/pipelining
   semantic search
   scaling
   money-making
@@ -673,6 +678,10 @@ fields:
 ==================================================
 ;SEARCH
 
+index quality
+
+vector embeddings & stuff
+
 better backend?
 
 meilisearch?
@@ -697,4 +706,3 @@ reorganize the fustercluck
 | _|+_+|_ |
 |/ \_ _/ \|
 /   | |   \
-   

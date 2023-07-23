@@ -1,0 +1,9 @@
+simple lisp-flavored js,
+  no conses
+
+infix operators:
+  ifx([op a b]) = (a op b)
+  ifx([op a b c]) = ((a op b) op c)
+  ifx([op a b c d]) = (((a op b) op c) op d)
+
+

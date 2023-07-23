@@ -139,6 +139,10 @@ handling fragments within fragments
 ==================================================
 ;UNCATEGORIZED
 
+vsmth needs components 
+  state that's used just for graphics should be local to the component 
+    wiring diagrams?
+
 story behind vsmth
   do component props do anything?
   all I want it to do is to redraw board

@@ -1,0 +1,51 @@
+single promise functonaroo
+
+promise semaphores?
+
+
+state machine
+  
+storing last answer in the model
+
+side effect way
+  qs & pt is async
+  
+bidirectional communication with a generator
+
+generator that yields a promise and waits
+
+normal generator, answers stored somewhere in the model
+  so that generator can use it
+
+
+  
+when it's one "draw", you can just call it from anywhere
+
+"draw" as an argument makes view functions more ?explicit?
+
+but that's the limitation I'm willing to break
+  rly?
+  draw is always the same here
+    but that isn't obvious when looking at the API
+
+
+
+the art of practicing bad practices
+
+
+
+make the answers editable
+
+the sorting should reset
+resetting cache
+
+make it just yield nothing
+
+
+preact
+  does memo prevent vdom diffing in higher order hooks?
+    doe
+
+deletion and sorting progress
+
+it yields after asking

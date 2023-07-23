@@ -1,5 +1,6 @@
 set up vsmth
   n-root version?
+    ???
 
 global thingamajiggles problem
 can't call draw from global event handlers

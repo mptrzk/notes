@@ -1,0 +1,62 @@
+does "await" schedule stuff to happen?
+or does it happen when the promise is created?
+  on creation
+
+js promise cheat?
+
+lock & key?
+
+
+".then" doesn't create promise via "Promise"
+because the lambda isn't called instantly
+  maybe it's nested?
+also, the body doesn't have "resolve"
+nah dude, it's a promise that gets resolved when the first one does
+the continuation gets evaluated when the promise gets resolved
+a promise resolves
+
+
+
+"then" being a promise is good for promise chaining
+await doesn't need to be chained
+await in await is nested
+
+why is it called "asynchronous" programming
+  because you can do other stuff when your promise is waiting
+
+
+events, generators, promises, coroutines
+
+
+ziuziałka-like promises?
+maybe they're python-like futures
+
+async function
+returns a promise
+
+
+what's PLACE in common lisp?
+  "(car x)" in (setf (car x) val) is not evaluated, right?
+
+js like assignment in common lisp
+  dude in JS you can't assign stuff to rvalues as well
+
+fns need to be async, so that the execution of the caller doesn't have to resume when they return
+  is this an artificial constraint?
+  they could be made to return promises
+  or an "await" could mean "add the following code as a promise hook and return a promise
+    yeah but what promise?
+    and when is it resolved
+      it's a promise of function finishing executing for good.
+      it resolves when the function returns.
+
+it's the "return" that forces "await" to be in "async" functions, right?
+vanilla promise syntax is weaker, because you can't return from it
+  you can though! return the promise that's the result of ".then"
+    rly?
+
+await also destructures the promise result, right?
+
+
+wait, what was "this" in arrow functions?
+  inherited form lexical parent
