@@ -1,20 +1,6 @@
 
-de-smartassizing my setup
-  replace all the clunky bullshit with stuff that's actually good
-  the software should just run
-
-making copy & paste sane in vim
-  system clipboard being the "*" buffer seems sensible
-    neovim?
-  move away from vim?
-
 vim tab labels are unhelpful now
   call note files the same way you call projects
-
-new kreck paradigm
- ((op . payload) . args)
- why?
-  to not hardwire inop semantics
 
 
 notetaking
@@ -28,3 +14,47 @@ practicing writing readmes
   preview markdown
 
 learn vscode?
+
+sync all git repos
+  push if newer
+  pull if older
+
+abusing github as persistant storage
+or gdrive maybe
+maybe there's an api
+
+array as a wacky function
+
+
+
+doing tests
+"yeet to tests" shortcut
+attaching tests to a function
+
+you make a programming language, you start getting wacky ideas
+
+one way to do it?
+  if you have many ways, you can do 
+
+"oh, but what if you 
+
+I need ad-hoc objects more often than proper dicts
+{k: v} should not be a dict
+you should be able to construct a dict 
+
+I don't like the name "object"
+structs?
+
+special operator "call closure with parent as a first argument"
+
+language design limbo
+
+slime apologia
+"but I write tests"
+  sometimes you want just value
+  also commenting and uncommenting printouts is a pain in the ass
+    you can remember to keep unnecessary ones commented
+    fair enough, still more confusing though
+"but my computer is fast"
+  the delay gets larger and larger
+  and sometimes you want to eval something that depends on long computation/large file

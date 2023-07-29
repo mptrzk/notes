@@ -1,3 +1,4 @@
+
 single promise functonaroo
 
 promise semaphores?
@@ -49,3 +50,10 @@ preact
 deletion and sorting progress
 
 it yields after asking
+
+bug afterthoughts
+  wrong pivot in hoare partition qs
+    test stuff
+      write stuff so it can be tested easily
+
+hacking it to use standard sort?`

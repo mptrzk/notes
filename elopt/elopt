@@ -1,0 +1,19 @@
+
+minimize
+  f error
+  q error
+  wasted power
+
+my algorithm
+  for each param:
+    perturb param up, if better, apply
+  for each param:
+    perturb param down, if better: apply
+
+optimizer should only take integer bound for each parameter and the cost function
+
+gen one series, have function that generates bounds based on that series
+
+explain the rounding trick
+
+

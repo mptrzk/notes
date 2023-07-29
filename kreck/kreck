@@ -980,6 +980,11 @@ kreck without "?"
 ==================================================
 ;UNCATEGORIZED
 
+new paradigm
+ ((op . payload) . args)
+ why?
+  to not hardwire inop semantics
+
 is the choice between symlist in subject vs in operator the choice between lexical and dynamic scopes?
 and all the calr/makr stuff is for scope inheritance/overloading
 

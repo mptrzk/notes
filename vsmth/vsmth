@@ -139,6 +139,9 @@ handling fragments within fragments
 ==================================================
 ;UNCATEGORIZED
 
+rationale for multiple bindings per document
+  debugging
+
 vsmth needs components 
   state that's used just for graphics should be local to the component 
     wiring diagrams?

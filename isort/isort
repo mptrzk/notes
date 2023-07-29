@@ -1,0 +1,11 @@
+A command line utility for sorting files interactively
+
+storing cache files in .local/share/isort
+
+options 
+  -i 
+    replaces file and makes backup
+  -I 
+    replaces file without backup
+  -c cache answers
+  -C cache answers (overwrite)
