@@ -121,6 +121,61 @@ convenience on top of generality
 ==================================================
 ;WRITEUP
 
+simple interpreters make tradeoffs
+they implement functionality poorly or in a way that doesn't scale
+you have a crappy garbage colector, you store and resolve symbols in a crappy way
+if you want a better interpreter, you need to kill the old one and replace it with a better one
+I don't want that
+I want an interpreter that could bootstrap itself
+
+a way to reduce trees of procedures
+
+at the most basic level, kreck is not as much a language, but an interpreter for which
+a large family of languages can be defined
+
+it's low-level engine for building LISP-like languages
+
+it's an abstract interpreter - it doesn't define any primitives
+it's possible to write a program that will discard all initial operators and continue running
+
+the interpreter is context-agnostic and operator agnostic
+
+wacky stuff you can do
+  no function-definining primitive
+    just put datastructure representing code in the context and access it in an expression to call it
+
+but can interpreter be made GC agnostic?
+  ???
+      it is GC agnostic!
+      you can eval stuff with different GCs if you like!
+    then GCs could be written with the notion of "external data"
+    just check bounds and don't iter over stuff that's OOB
+  no, read the code again!
+   in SnC roots need to be attached
+   in both ABC & SnC frames need to be pushed & popped
+
+how many cells do you need to bootstrap
+
+the interpreter is not data-agnostic when it comes to code
+it expects it to be an atom
+  in practice this could mean just checking MSB
+
+
+lisp, but:
+  arguably more homoiconic: evaluation context is programmable in the language itself and completely independent of the interpreter
+    The interpreter is context-agnostic.
+    It doesn't manipulate it.
+    It just calls the operator with it
+    easiest to explain by contrast with sectorlisp
+  doesn't enforce eager argument evaluation
+  no special operators:
+    In lisp opeartors such as "lambda", "quote" or "if" are neither funcitons, nor macros, but special operators
+    They are hard-baked into the interpreter and 
+  parent-language interop
+  doesn't come with symbols
+    I want packages and stuff, but I don't want to hardwire it into the interpreter
+
+
 it's a lisp, but with even more metaprogramming
 AST as a data structure exposed to the programmer
 environment
@@ -979,6 +1034,57 @@ kreck without "?"
 
 ==================================================
 ;UNCATEGORIZED
+
+putting environment inside the closure?
+  nah, environment is special, as interpreter resuses it to evaluate subespressions
+
+env goes down, closures go up
+
+sym => ((#symop) "sym")
+
+code = (closure . args)
+closure = (exop . data)
+
+
+*(subj, atom) = atom
+*(subj, (atom . payl) = (atom . payl)
+*(subj, ((expr . args1) . args2)) 
+= @(subj, (*(subj, (expr . args1)) . args2))
+*(subj, ((exop . payl) . args)) 
+= @(subj, ((exop . payl) . args)) 
+= exop(subj, payl, args)
+  that would overcomplicate symbols
+
+@(subj, ((exop . payl) . args)) 
+
+#expr - expr is atomic
+
+*(subj, #atom) = #atom
+*(subj, (#exop . payl) = (#exop . payl)
+*(subj, ((expr . args1) . args2)) 
+
+"apply" expects an expression with atomic caar
+
+recursively eval until atomic caar is found?
+
+*(fun arg) = *(((#symop) "fun") arg)
+= @(*((#symop) "fun") arg)
+
+don't cons the args to subj? 
+  such consing would be spurious
+
+the symop would work like this
+
+evsym(subj, (s), op
+
+why not make it flatter?
+  closures are carried together with 
+
+you can wing it
+  make the first arg the closure payload
+  kinda like like python does with "self" argument
+  then the inop operator 
+
 
 new paradigm
  ((op . payload) . args)

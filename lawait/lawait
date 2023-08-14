@@ -1,8 +1,15 @@
+a test program in JS, python and common lisp
+
+how do python generators work?
+
+just a single async function in nodejs
+  will the script terminate?
+    I guess yeah
+
 does "await" schedule stuff to happen?
 or does it happen when the promise is created?
   on creation
 
-js promise cheat?
 
 lock & key?
 

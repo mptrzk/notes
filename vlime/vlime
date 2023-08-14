@@ -1,0 +1,18 @@
+all this windows all over the place
+  I don't want the repl window to be opened alongside the debugger window
+
+maybe first figure out how to put everything on the right side of a vsplit
+
+let's just go along the tutor, we will figure out other stuff later
+
+check out those slimv bindings
+
+the debug command
+  let g:vlime_compiler_policy = {"DEBUG": 3}
+  can I specify it in lisp?
+    I remember doing something like that
+  is this command buffer specific?
+    "g:" means global supposedly
+
+what's that fasl stuff all about
+

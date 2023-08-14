@@ -1,0 +1,140 @@
+Explain big O notation,
+Explain time complexity
+Explain memory complexity
+read up
+  but first let's go with my intuitive thingy
+
+deriving limit theorems from the definitions
+read up from that book
+  https://personal.math.ubc.ca/~PLP/book/section-1.html
+
+
+"No matter how much faster you run it, for large enough parameters it will still lose"
+
+Observation that constant components don't matter as much when it comes to scaling
+
+Classifying parameter dependent behavior
+
+So let's say you have two algorithms and you want to know which is faster
+It depends on the parameter
+
+So big "O" notation is used to compare asymptotic behavior of functions
+used to classify and compare functions based on their asymptotic behavior
+that is, how they behave compared to other functions as their parameters increase
+
+O(f(n)) > O(g(n)) <=> lim(n->inf)(f(n)/g(n)) = inf
+
+Or less strictly speaking, for large enough arguments, the value of f is at least as many times larger than the value of g
+as you wish.
+
+You can choose a number x that's as big as you like, and for large enough argument, f will be more than x times bigger than g
+
+"By more than any number you can imagine"
+  are those equivalent though?
+
+O(f(n)) > O(g(n)) <=> .A x .E n0 .A n > n0: f(n) > g(n) * x
+
+O(f(n)) < O(g(n)) <=> O(g(n)) > O(f(n))
+O(f(n)) = O(g(n)) <=> ~(O(f(n) > O(g(n)) & ~(O(f(n)) < O(g(n)))
+
+O(f(n)) > O(g(n)) => ~(O(f(n)) < O(g(n)))
+
+
+prove:
+  O(an+b) = O(n)
+
+    O(an+b) = O(n) <-> ~(O(an+b) < O(n)) & ~(O(an+b) > O(n))
+
+    an+b > n * x
+    if n = 0:
+      an > n
+    else:
+      x < a + b/n       #but division by zero!
+      "x can be arbitrarily big, but a + b/n can be at most a + b, therefore ~(O(an+b) > O(n))"
+      ^^ jumping to conclusions
+        need to do more proofs with quantifiers
+        here the n = 0 case is unnecesary because of the universal quantifier
+        quantify it properly, bro
+
+    an+b < n * x
+    x > a + b/n
+
+  O(n^2) > O(n)
+
+prove with limits:
+  O(an+b) = O(n)
+    O(an+b) = O(n)  <=> lim(n->inf)((an+b)/n) != inf & lim(n->inf)((an+b)/n) != 0
+
+    lim(n->inf)((an+b)/n) = a != inf != 0
+    O(an+b) = O(n)
+
+so this proof is really short, but there are some handwavy tricks
+
+the codomain of limits can be thought of as {R || {-inf, inf}} and then you can use the equals sign
+you can't do algebra though, it's not a field
+
+proving stuff about big-O with limit tricks feels like cheating, because they are kind of based on
+intuitively assessing big O
+  rly?
+
+bounded quantifiers
+  .A x .in X: P(x) <=> .A x: x .in X -> P(x)
+  .E x .in X: P(x) <=> .E x: x .in X & P(x)
+"->" and "&" being there seems counterintuitive
+
+
+proofs with quantifiers
+  .A x: P(x)
+    by induction
+    by counterexample
+      find x such that ~P(x) 
+  .E x: P(x)
+    by example
+      find x such that P(x)
+    
+
+You don't really need rigorous proofs to wrap your mind around the idea of "eventually algorithm A is incomparably
+better than algorithm B"
+
+another perspecitve
+If functions are in the same asymptotic class, it's possible to tell stuff like "this function is at most/least C times better"
+where C is a constant
+
+is the version with adding instead of multiplying the small-o notation?
+
+
+incomparably bigger
+
+
+In computer science big O is used to denote time complexity or memory complexity
+Which are asymptotic classees of algorithms based on their execution time or memory consumption
+
+the examples
+
+
+generalization of limits
+
+the anti-limit
+
+co-limits and stuff
+
+asymptotic behavior
+pick up an arbitrarily strict constraint and it will be satisfied for large enough argument
+
+integer-parametrized predicate as a 
+P(x, n), where n is difficulty
+
+.A n: .E k0: .A k > k0:  P(x, k) -> Q(x, n) 
+
+examples:
+limit 
+
+the big-O field
+
+it's not just that constants don't matter
+O(x^2 + x) = O(x^2)
+
+"f's asymptotic growth is no faster than g's"
+  "faster growth" sounds like it has something to do with derivatives
+  but big O's specified in terms of a normal limit
+  maybe it somehow ties to the l'hopital's rule

@@ -1,0 +1,72 @@
+is the behavior with stty different?
+  pressing enter when eof
+
+todo
+  flushing stdin after an oopsie
+  a nice debugger
+  make paredit indents sane 
+
+make a structured editor
+
+tough bug writeup
+  nested inop didn't work
+  it turns out, it didn't eval the args
+  I missed it, because I tested it with numbers as arguments, and numbers eval to themselves
+reproduce the bug again
+
+what I could've done
+  put it in a debugger
+  had not repeated arg names
+    if it had been "a", it would've been visible
+  1 use unique names
+    don't be a smartass about regularity
+  2 read your code
+    ask yourself should it do that?
+  3 test thoroughly
+    all cases except redundant ones
+      how to know which cases are redundant
+  4 get a debugger
+    you should've known what values caused the exception
+    as well as a whole stack that lead up to them
+
+how I solved it
+  first in repl
+  then in python
+  then with manually defined ops
+  printed out new_env
+  suspected it had something to do with inner expression evaluation
+    why?
+      it worked when it wasn't nested
+      ^^ "it worked"
+        that's how not having stuff thoroughly tested causes confusion
+  somewhere I realized "something didn't get evaled"
+    I thought that the list didn't get evaled
+      that may be because both args were called 'x'
+  then was the worst confusion
+  narrowing down
+
+also, testing multiple cases before debugging can be great
+if I did the asserts and ran the script, failed cases would block each other
+  slime apologia
+  also, isn't this the advantage of testing frameworks as well?
+
+also I didn't build good testing thingies
+  "but I had a repl"
+    you didn't have asserts in repl
+    you could've written more thorough evaluations in repl
+
+trivial cases
+
+
+do I really want a TUI debugger?
+  I don't, I want a nice debugger
+    is tui ugly?
+      coding it is ugly
+
+what's "time travel debugging"
+
+pytrace seems cool
+  how is the decorator implemented
+
+could I avoid repetition by defining the exops using a decorator?
+

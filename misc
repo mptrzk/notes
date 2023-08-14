@@ -1,3 +1,14 @@
+how redefining a function affects functions that use it in js, python and lisp
+it updates
+  does it not update when the fn is assigned to a var?
+    it doesn't in python
+    same in js
+      how about arrow functions?
+
+webapp slime
+  slimeCallback variable
+    main component sets it
+    
 
 vim tab labels are unhelpful now
   call note files the same way you call projects
@@ -12,8 +23,6 @@ notetaking
 
 practicing writing readmes
   preview markdown
-
-learn vscode?
 
 sync all git repos
   push if newer
@@ -58,3 +67,6 @@ slime apologia
 "but my computer is fast"
   the delay gets larger and larger
   and sometimes you want to eval something that depends on long computation/large file
+
+
+that memory thingy
