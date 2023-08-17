@@ -1,0 +1,6 @@
+big big bugs
+  abc gc segfault
+  that snc bug I figured out after writing an ABC gc
+  crocus line reading bug
+  isort-web bad sorting method
+  notarepl forgot an eval

@@ -1,0 +1,206 @@
+so TDD comes as a package
+  you should do more tests
+    Mostly agree
+      where I do
+      where I don't 
+  you should write tests first
+    Mostly disagree
+      where I do
+        
+      where I don't 
+
+
+"Do a little bit of testing here, a little bit of testing there and a
+lot testing when you're truly done and it matters"
+test well
+stupid tests are stupid
+  it's probably a really hard problem to prove which unit tests are
+  stupid
+
+superfluous practice makes people look skilled
+
+how superfluous processes emerge
+  they make people look smart
+
+looking smart
+  3 hours testing, 1 hour coding
+    people know what they're doing 75% of time
+  2 hours coding, 1 hour testing
+    people know what they're doing 33% of time
+  ^^ shouldn't use coding/testing
+    arbitrary numbers - that's not the point
+the point is, you can say that the extra work was higher quality because people doing it knew what they were doing
+the value-rich work was inflated
+
+if you know what you're doing too much you're in the wrong league
+ 
+
+arguments for testing first from https://dev.to/flippedcoding/4-reasons-you-should-write-tests-first-47oa
+  "It forces you (and the business side) to clearly define problems"
+  "It will allow you to write less code"
+    "When you have to dig back through code to remember what it is supposed to be doing,
+    you're spending a lot more time."
+      tests != spec
+      you shouldn't write tests after you forget what the code was for
+    Having all of your tests defined at the beginning and writing 
+    just enough code to pass them clears up so many issues."
+      reductio ad absurdum in "just enough code to pass tests" 
+  "It gives you a way to back up your word"
+    "Users may lie to you about what broke"
+      An argument for having tests, not for writing them first
+  "It will allow you to write less code"
+    "You only have to write enough code to pass the test"
+      tests != spec, reduction ad absurdum
+    "When you're trying to implement a large feature, it's easy to get
+    lost in the code"
+      test more often then
+    "Testing keeps you on track and focused when you are writing the
+    code for that large feature."
+      for interesting problems, detailed spec for large features changes
+    "Before you can move on to another piece of the feature, you have to
+    finish the one you're working on."
+      same if you write tests after the fact
+    "There is no "coming back to it later" because you can't continue
+    writing code until you pass that first test."
+      that's just a lack of discipline
+      maybe testing first makes it easier to be disciplined in that
+      way
+    "It's like it slows you down so you can really think about what
+    you're writing before you write it."
+      that's arguably a bad thing, computers are bicycles for the mind
+    "Once you have a well-defined test, it's not as hard or complicated
+    to write the implementation."
+      can be true, but it also works the other way around
+    "You can deploy your code on a Friday night and not worry about anything breaking"
+    "When you need to update a feature or you do find a bug, you can
+    just check where the tests failed."
+    "Plus when you do any major updates or you just change a lot of
+    files you won't have to worry about regression testing."
+    "A few hours of writing tests can save you from the worst of these
+    issues. 
+  "It gives you a way to back up your word"
+  
+
+tests are a useful tool
+
+the stupid way of building software
+  testing ad-hoc
+  testing once
+
+
+tests are not spec: reduction ad absurdum
+
+Make an associative array whose keys are arguments from tests, and
+values are the desired values corresponding to those arguments. 
+Write a function
+
+universal test passer
+
+assert(impl(*args) == value)
+
+def impl(*args):
+  return {
+    
+  }
+
+
+how "not writing tests" works
+why is "test after" called traditional development?
+  it's intuitive for some reason
+
+the counterintuitive-based paradigms vs natural paradigms
+natural paradigms:
+  imperative programming
+  functional programming
+counterintuitive-based programming:
+  structural
+  OOP
+  TDD
+
+
+a test is a partial formalization of a function
+
+TDD says you should formalize the function partially before you formalize it wholly
+
+you can't really treat a function like a black box and test it thoroughly without testing across entire domain
+
+
+it's a graybox
+if I completely understood what it is doing, I wouldn't have to test it
+
+that's kinda the thing with testing first, you have to kinda know what the code will be like to write good tests
+
+do I need to test standard library functions?
+  the common sense answer is "no, it's not my job"
+
+"you don't formulate the hypothesis after you perform an experiment"
+  writing a code is not an experiment
+    you don't perform experiments to conform to a hypothesis
+
+at most n-paths tests
+  what if some path is missing?
+
+[move]
+how to come up with good tests
+  make them weird
+  test against your most obvious use case
+  in dynamic langauges, use the most strictest equality predicate
+how to come up with bad tests
+  make them irrelevant
+    data that will never be passed
+  make them redundant
+  make them cover similar cases
+
+testing first?
+  do I have a spec?
+    if so, yes
+    otherwise, no
+am I confusing myself by looking at the output without writing tests?
+
+the better I'm able to write the tests first, the better I am at understanding problem
+
+but writing the actual code makes me better at understanding problem
+
+solid argument to testing first
+  when you write out what you think you know, you're likely to realize what you don't really know
+  you can come up with a couple of relevant use cases and you 
+
+"spec always comes first"
+  spec is often incomplete
+    result format is unspecified
+      example
+        do I want a tuple? a list? a dict? an object?
+      spurious formalization
+        deciding a priori what format the result should be in
+
+writing tests is confusing, rewriting them is
+it's the same with readable function names
+you find out that it would be nicer if the function did something else and you have a misleading name
+
+a unit may even disappear completely
+or be modified to do a different thing
+
+"it gives you confidence"
+"you'll write less code, you'll only have to write enough code to pass the test"
+  what if your tests are shitty?
+  and they are shittier than if you wrote the code first
+you shouldn't write code to pass the tests
+  tests are partial implementation
+
+f_d - desired funciton
+f_t - testing function
+f_i - implemented function
+
+we know that f_t is a subset of f_d
+
+what jblow says
+  interesting systems are hard to test
+  it takes a lot of time
+  you don't know what to test if you're writing anything interesting
+  the more tests you have, the harder it is to change things
+    ^^hot code
+  "the benefits are obvious, the costs are subtle or swept under a rug by people who want
+  to sell you on things"
+
+
+pretending that hot code is cold is being a smartass

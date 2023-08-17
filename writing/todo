@@ -1,12 +1,6 @@
-new kreck
 vsmth effects
-fuzzin' q-tic
-readmes
-markdown server
-isort
+write readmes
 explaining complexity
-learn unix thoroughly
-learn python thoroughly
 muck about in sql
 testing qs in web-isort
 render-debugging q-tic
@@ -25,6 +19,10 @@ deriving series & parallel C & C using phasors
 do elopt stuff
 read every project
 
+debugging
+  fuzzin' q-tic
+
+
 programs
   marker
 
@@ -37,9 +35,33 @@ vim
   getting semshi to complain about type hints
   change semshi selected name highlight to not red
 
+unix
+  ls
+  head
+  tail
+  ps
+  df
+  cat
+  grep
+  sed
+  awk
+  gcc
+  ld
+  as
+
+bash
+  making command non-blocking, but terminating
+
+git
+  merge vs rebase
+
+
+learn to use htop less ?selectively?
+
 learn concepts
   transactions
   schema
+  context manager
 
 misc
   does the termios manpage lie about input buffer size?
@@ -56,3 +78,8 @@ css from js
 
 testing for exceptions
 
+check out deno
+toy event loop in python
+that ps bug
+functools, itertools
+learn asyncio
