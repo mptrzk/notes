@@ -1,4 +1,137 @@
-"asyncio good for many clients"
+double async wrap
+  in wslime to eval blocks containing awaits
+  in files, so that they work without wslime 
+
+slime-less SPR
+  can be done via cookies
+  yeah, but that doesn't preserve hidden state
+
+SPR - state preserving reload
+
+I want
+  slime-like interactivity
+    can send code snippets to be evaled in top level
+  state-preserving reload
+  transparent modules
+  deslimization
+    can turn into a static web app
+    well it doesn't have to be de-slimed
+
+wslime app
+js only by default
+
+index.html would load the slime
+
+all the bootstrapping would have to be in the init
+
+the wslime.js as a module kerfuffle
+  I wanted it to be pluggable into existing modules
+  that didn't work out, because modules seem to be isolated from the script evaluation scope by browser
+
+but how to make wslime client eval application files in static mode?
+  check out the react demo!
+    https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html
+  how JSX gets parsed
+    trace it! (with a profiler)
+      does the builtin browser profiler support trace debugging?
+  
+
+
+
+is having wslime as an import stupid?
+  I don't like it being re-imported on each block eval
+  Do I want other stuff re-imported?
+    yes, if I make a change to it
+      but would I? I can't eval stuff in it
+    I'd like the modules to be transparent
+    just fetch & eval
+
+I don't wanna block the event loop
+console awaits don't block the event loop, right?
+
+what problem am I really trying to solve?
+  I want imports to work like it's python
+    import stuff
+    execute code
+  not 
+    import stuff
+    fail to execute code, because import is asynchronous
+  having a top-level await is a nice thing also
+    I have it in console
+    I want it in my repl
+
+I want the saved file to be hostable in a normal way
+  can it be all weird?
+
+
+split shit into blocks
+eval them one by one
+await each one
+imports have to be done through "promise.all"
+  seems clunky
+
+wapping everything in "async"
+  breaks top level declarations with const & let
+    but I don't really need them
+    does it break normal declarations?
+  it also breaks "function"
+
+make wslime not-a-library
+  then the imports can happen on init
+
+synchronou
+
+do I need modules anyway?
+
+custom modules?
+  fetch & eval FTW
+    fetch is async too
+
+why not make a lisp
+  seems a bit of an overkill
+
+
+
+what doesn't work?
+  ,b-reloading modules
+
+just import it using a <script> tag
+
+but aren't those limitations ruining the possibility of using a middleware and deploying sanely?
+
+split bootstrap when evaling the whole file?
+
+await in eval:
+  https://stackoverflow.com/questions/56187117/await-is-only-valid-in-async-function-eval-in-async
+
+problem with js modules
+  can I eval within a js module?
+    supposedly, no
+
+wslime should be injectable as a library
+  it shouldn't be an "index.html" file
+
+understanding js imports
+import foo from './bar' means "import the default export object of file 'bar' as foo"
+  equivalent of:
+    const foo = require('./bar')
+oh yeah, and there's also dynamic import()
+
+
+scratchpad workflow:
+  don't muck about in the main file
+    it would be nice to have ,y bound as "yank the block"
+  bind refresh
+  should I yeet whole file detection?
+    any reason not to? you don't need to detect it when all the ?helper snippets? are in another file
+  ,b for the main file is still useful
+    state-preserving reset
+  
+
+keep readme clean
+
+"asyncio good for handling many clients"
+  from websocket page
 
 how asyncio works
 what is that event loop thingy?
@@ -13,10 +146,54 @@ cool stuff to do
   loops with delayed generators, each lightning stronger than the previous one
     
 
+case against server middleware?
+  it makes the system less malleable
+
+middleware as js modlues?
 
 
 
 costs of slime
   [todo - move near slime apologia]
 
+
+vim-slime seems slow
+  does it write to my usb drive?
+
+Future usage:
+
+    wslime [port]
+    wslime -m [local_milddleware....] [port]
+    wslime -j [builtin_middleware...] [port]
+
+naah, I want it to do a simple thing well
+it's not really just netcat for websockets
+  I want the lines to be buffered and sent when they stop comming
+  that way I don't have to buffer stuff in JS
+    and more importantly - figure out what should be buffered and what shouldn't
+      maybe that's a simpler problem?
+      maybe client side buffering ain't so bad
+        JS has timouts and lambdas that can assign
+  the whole 10ms waiting thing
+
+What ESR said about gobbling manuals
+
+I'll do it in a folder now, but then I'll learn how to do branches
+
+
+
+I want refreshing state from vim, without reloading
+It should work in block eval and with buf eval if fresh
+
+Those are hacks around editor limitation, but I'd like to keep
+my editor simple
+TODO ponder tradeoffs
+it would be nice if I could reset state with something like ,B or ,R
+ ,B - state reset
+ ,R - page refresh
+
+another hack - commented block signifiers?
+ &block
+  that would require wslime preprocessing stuff
+ or maybe just keep stuff in different files?
 

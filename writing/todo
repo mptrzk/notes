@@ -1,3 +1,13 @@
+!!!!
+check if crocus exposes files that it has no business exposing
+
+
+
+flush stdin in notarepl
+  should it apply to wslime?
+
+ic
+
 vsmth effects
 write readmes
 explaining complexity
@@ -6,7 +16,6 @@ testing qs in web-isort
 render-debugging q-tic
 cleaning up state in ziuziałka
 "sample pack from youtube" crawler
-get a proper python debugger (check out vimspector)
 check out promise antipatterns
 log everything in crocus bridge
 proper sessionless thing in crocus bridge
@@ -29,6 +38,7 @@ programs
 vim
   why save to so%?
     when does it mean "buffer" and when "file"?
+  check out file viewers
   check out vimtutor
   check out vlime tutor
   check out vim-sensible
@@ -36,6 +46,11 @@ vim
   change semshi selected name highlight to not red
 
 unix
+  whatis
+    what is (1) and (1p) for "whatis head"
+  where
+  patch
+    is it obsolete?
   ls
   head
   tail
@@ -48,6 +63,8 @@ unix
   gcc
   ld
   as
+  lex
+  yacc
 
 bash
   making command non-blocking, but terminating
@@ -55,6 +72,28 @@ bash
 git
   merge vs rebase
 
+github cli
+  remind yourself how to log in on a new machine
+
+docker
+  what is it for
+    shipping containers? :)
+
+python
+  get a proper python (check out vimspector)
+  get a tracing debugger
+  what are classes anyway?
+  how standard way to sort by comparison works like?
+
+js
+  import conversion
+  get a tracing debugger
+  prototype-based oop 
+  what are classes anyway?
+  yeet to debugger on freeze?
+    node
+    browser
+    
 
 learn to use htop less ?selectively?
 

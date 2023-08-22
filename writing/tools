@@ -3,5 +3,14 @@ vim
 
 
 slime (as an interactive paradigm)
+  [move apologia]
+  costs:
+    source file can get out-of-whack with the program state
+      use a scratchpad file?
+    interactivity causes complexity
+
+vim slime is potentially dangerous if it kills the interpreter and stuff gets pasted into the shell
+  flush stdin?
+
 
 debugging - see debugging notefile
