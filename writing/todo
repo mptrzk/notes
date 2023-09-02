@@ -80,6 +80,8 @@ docker
     shipping containers? :)
 
 python
+  namespaces
+  generators under the hood 
   get a proper python (check out vimspector)
   get a tracing debugger
   what are classes anyway?

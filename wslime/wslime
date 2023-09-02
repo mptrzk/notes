@@ -1,6 +1,169 @@
+save as preset
+
+local package manager?
+
+state reset preset
+  resetting function in init
+  reset() in scratch
+
+css
+  why so many rules?
+
+
+principles
+  interactivity
+    evaling stuff sent over by vim-slime
+    in a way that scales to large projects
+    in a practical way
+      transparent modules
+      origin indifference
+      instant shippability as a webapp
+    middleware
+    after-eval hooks
+  ease of setpup
+  permissivity 
+    no strict bounds to mucking around 
+  minimalism
+    minimize boilerplate
+    minimize external dependencies
+    minimize LOC (wihtout golfing)
+
+
+
+EJS module paths resolve paths relative to importing file's dir
+  this kinda makes sense
+    rly?
+should wslime modules do it?
+  seems like it would break or overcomplicate stuff
+    break
+      vim-slime would have to send buffer identification
+
+copy wslime client to a working directory
+get client to load wslime scripts again
+  or not?
+    maybe just copy the simple index from the current server sript
+index.html
+
+
+variadic asynchronous wslime.load
+
+
+writing out the rules and being aware of them doesn't make you
+rigid-minded
+  you know what to question
+
+noo, forgot about a design principle
+  I want the result to be runnable as a static app
+
+
+project initialization
+  --init-minimal
+    just copies the client to the cwd
+  --init
+    copies the to the cwd the following:
+      client
+      index.html
+      init.js
+      app.js
+      scratch.js
+  --init [preset]
+    custom preset from $WSLIME_PRESETS
+    
+preset folder in the repo?
+    
+
+remove index.html?
+  more opinionation
+  but isn't wslime pretty opinionated by design?
+
+sometimes code gets longer while getting simpler
+  duh!
+  that's de-golfing 
+
+just do the thing
+
+
+
+
+another way slime may add complexity, is that the semantics of code may change on the subsequent evaluations
+  especially when it comes to redefining the eval
+
+the rules of sliming are as follows
+  don't slime the init file
+  don't load the scratch file normally
+
+okay, so why wjs scripts, why not normal js scripts?
+  ES modules are opaque
+    Which means...
+  Normal scripts don't allow top level async
+    which makes it unwieldy to run code that depends on imports
+    I don't want to use sync requests for imports, because I don't want to block the event loop
+
+libbit
+  makes libraries I wrote available to projects
+  uses symlinks
+  in the working directory they are symlinks
+  but the stuff the symlinks point to gets pushed to the repo as normal files
+
+how many threads does a browser need
+  what happens when external event fires?
+    check out the toy event loop in python
+
+per-module init?
+  seems like overthinking
+you don't need init logic in code
+
+do you really need wslime init?
+you can just make a file that you don't eval in a slimy way
+
+you can achieve SPR by splitting your program into files the right way
+
+back to simple http server? 
+  static apps need to have the wslime client in the working directory anyway
+
+is the <script> inner text for when the src can not be fetched?
+
+a static app will need the library in the working directory
+
+so bind doesn't work for arrow functions?
+
+why binding 'window' to eval lets me declare global variables
+  first it made sense, now it doesn't
+  because "this" is bound to widow in "function" functions, and stuff that's local to them stays local
+  maybe it's a quirk of eval
+
+do I really need top-level asynchronicity?
+  evals happen after static script load
+    yeah, but during the script load imports have to happen
+  imports in init only?
+      why would you do that?
+        to not force async evaluation
+    change the module, eval the main script, stuff should get re-imported
+    and it would complicate stuff
+    and the init would have to be forcibly separated from the rest
+
 double async wrap
   in wslime to eval blocks containing awaits
   in files, so that they work without wslime 
+not needed, since slime files will be loaded as scripts
+  but what problem does loading files as scripts actually solve
+    other than eliminating double async wrap?
+    you can do middleware!
+    it removes architecutral irregularity
+  it's confusing
+
+architectural regularity
+  code evaluated in the same order should do the same thing, regardless its origin
+better name
+  origin-agnosticism
+  origin invariance
+  origin indifference
+
+origin indifference as a case for splitting into blocks before eval?
+it may matter if you're overriding the eval function
+I don't want to parse JS for the sake of origin indifference
+
+
 
 slime-less SPR
   can be done via cookies
@@ -13,12 +176,15 @@ I want
     can send code snippets to be evaled in top level
   state-preserving reload
   transparent modules
-  deslimization
+    they get evaled in the main scope
+    if you want to hide stuff, you have to do it in the module explicitly
+    so I can eval stuff in them
+  deployment as static app
     can turn into a static web app
-    well it doesn't have to be de-slimed
+
 
 wslime app
-js only by default
+js-only by default
 
 index.html would load the slime
 
@@ -34,6 +200,8 @@ but how to make wslime client eval application files in static mode?
   how JSX gets parsed
     trace it! (with a profiler)
       does the builtin browser profiler support trace debugging?
+  runScripts
+okay, it reads the script tags and fetches stuff 
   
 
 
@@ -196,4 +364,5 @@ another hack - commented block signifiers?
  &block
   that would require wslime preprocessing stuff
  or maybe just keep stuff in different files?
+
 

@@ -17,3 +17,7 @@ gen one series, have function that generates bounds based on that series
 explain the rounding trick
 
 
+culling stupid combinations
+    like 1M + 1p
+  iterate up to a relative tolerance
+    what are the
